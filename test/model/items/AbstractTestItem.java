@@ -20,6 +20,7 @@ public abstract class AbstractTestItem {
   protected int expectedPower;
   protected short expectedMinRange;
   protected short expectedMaxRange;
+  protected boolean expectedHealer;
 
   /**
    * Sets up the items to be tested
@@ -101,6 +102,7 @@ public abstract class AbstractTestItem {
     return expectedMaxRange;
   }
 
+
   /**
    * Checks that the Item can be correctly equipped to a unit
    */
@@ -111,6 +113,7 @@ public abstract class AbstractTestItem {
     getTestItem().equipTo(unit);
     assertEquals(unit, getTestItem().getOwner());
   }
+
 
   /**
    * @return a unit that can equip the item being tested

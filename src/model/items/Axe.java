@@ -10,6 +10,7 @@ package model.items;
  */
 public class Axe extends AbstractItem {
 
+
   /**
    * Creates a new Axe item
    *
@@ -23,6 +24,11 @@ public class Axe extends AbstractItem {
    *     the maximum range of the axe
    */
   public Axe(final String name, final int power, final int minRange, final int maxRange) {
-    super(name, power, minRange, maxRange);
+    super(name, power, minRange, maxRange, false);
+  }
+
+  @Override
+  public int i_isAttacked(IEquipableItem equippedItem) {
+    return 0;
   }
 }

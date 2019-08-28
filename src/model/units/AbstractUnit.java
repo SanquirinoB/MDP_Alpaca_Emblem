@@ -21,7 +21,7 @@ import model.map.Location;
 public abstract class AbstractUnit implements IUnit {
 
   protected final List<IEquipableItem> items = new ArrayList<>();
-  private final int currentHitPoints;
+  private int currentHitPoints;
   private final int movement;
   protected IEquipableItem equippedItem;
   private Location location;
@@ -87,5 +87,44 @@ public abstract class AbstractUnit implements IUnit {
         && targetLocation.getUnit() == null) {
       setLocation(targetLocation);
     }
+  }
+
+  @Override
+  public boolean attackViable(IUnit enemy) {
+    if (this.getEquippedItem() != null && !this.getEquippedItem().isHealer()){
+      int min_i = this.getEquippedItem().getMinRange();
+      int max_i = this.getEquippedItem().getMaxRange();
+      double dist = this.getLocation().distanceTo(enemy.getLocation());
+      if(min_i <= dist && dist <= max_i) {
+        return true;
+      }
+    }
+    return false;
+  }
+
+  @Override
+  public void attack(IUnit enemy) {
+    enemy.attacked(this.getEquippedItem());
+    enemy.attackBack(this);
+  }
+
+  @Override
+  public void attackBack(AbstractUnit enemy){
+    if(this.attackViable(enemy)){
+      int damage = this.getEquippedItem().i_isAttacked(enemy.getEquippedItem());
+      int health = enemy.getCurrentHitPoints();
+      enemy.setCurrentHitPoints(health - damage);
+    }
+  }
+
+  @Override
+  public void attacked(IEquipableItem equippedItem) {
+    int damage = this.getEquippedItem().i_isAttacked(equippedItem); // Por pensar
+    int health = this.getCurrentHitPoints();
+    this.setCurrentHitPoints(health - damage);
+  }
+
+  protected void setCurrentHitPoints(int i) {
+    this.currentHitPoints = i;
   }
 }

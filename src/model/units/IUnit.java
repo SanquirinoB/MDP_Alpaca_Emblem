@@ -65,4 +65,12 @@ public interface IUnit {
    * If the other location is out of this unit's movement range, the unit doesn't move.
    */
   void moveTo(Location targetLocation);
+
+  boolean attackViable(IUnit enemy);
+
+  void attack(IUnit enemy);
+
+  public void attacked(IEquipableItem equippedItem);
+
+  public void attackBack(AbstractUnit abstractUnit);
 }

@@ -191,6 +191,7 @@ public abstract class AbstractTestUnit implements ITestUnit {
     assertEquals(new Location(0, 2), getTestUnit().getLocation());
   }
 
+
   /**
    * @return the test field
    */

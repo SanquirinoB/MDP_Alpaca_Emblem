@@ -22,7 +22,7 @@ public class Bow extends AbstractItem {
    *     the maximum range of the bow
    */
   public Bow(final String name, final int power, final int minRange, final int maxRange) {
-    super(name, power, minRange, maxRange);
+    super(name, power, minRange, maxRange, false);
     this.minRange = Math.max(minRange, 2);
     this.maxRange = Math.max(maxRange, this.minRange);
   }

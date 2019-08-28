@@ -45,4 +45,8 @@ public interface IEquipableItem {
    * @return the maximum range of the item
    */
   int getMaxRange();
+
+  boolean isHealer();
+
+  public int i_isAttacked(IEquipableItem equippedItem);
 }
