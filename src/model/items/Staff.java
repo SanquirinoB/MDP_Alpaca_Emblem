@@ -25,4 +25,19 @@ public class Staff extends AbstractItem {
   public Staff(final String name, final int power, final int minRange, final int maxRange) {
     super(name, power, minRange, maxRange, true);
   }
+
+  @Override
+  public int attackedByAxe(IEquipableItem axe) {
+    return axe.getPower()*(3/2);
+  }
+
+  @Override
+  public int attackedBySword(IEquipableItem sword) {
+    return sword.getPower() - 20;
+  }
+
+  @Override
+  public int attackedBySpear(IEquipableItem spear) {
+    return spear.getPower();
+  }
 }

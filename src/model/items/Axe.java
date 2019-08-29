@@ -1,5 +1,7 @@
 package model.items;
 
+import model.units.IUnit;
+
 /**
  * This class represents an Axe.
  * <p>
@@ -26,9 +28,27 @@ public class Axe extends AbstractItem {
   public Axe(final String name, final int power, final int minRange, final int maxRange) {
     super(name, power, minRange, maxRange, false);
   }
+  // Give them use
+
 
   @Override
-  public int i_isAttacked(IEquipableItem equippedItem) {
-    return 0;
+  public int fightAgainst(IEquipableItem other){
+    return other.attackedByAxe(this);
   }
+
+  @Override
+  public int attackedByAxe(IEquipableItem axe) {
+    return axe.getPower();
+  }
+
+  @Override
+  public int attackedBySword(IEquipableItem sword) {
+    return sword.getPower()*(3/2);
+  }
+
+  @Override
+  public int attackedBySpear(IEquipableItem spear) {
+    return spear.getPower() - 20;
+  }
+
 }

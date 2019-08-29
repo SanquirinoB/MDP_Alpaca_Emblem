@@ -29,6 +29,12 @@ public interface IUnit {
   int getCurrentHitPoints();
 
   /**
+   * Set the i amount of HitPoints
+   * @param i
+   */
+  void setCurrentHitPoints(int i);
+
+  /**
    * @return the items carried by this unit
    */
   List<IEquipableItem> getItems();
@@ -70,7 +76,7 @@ public interface IUnit {
 
   void attack(IUnit enemy);
 
-  public void attacked(IEquipableItem equippedItem);
+  public void attackedBy(IEquipableItem equippedItem);
 
   public void attackBack(AbstractUnit abstractUnit);
 }

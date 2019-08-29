@@ -8,6 +8,7 @@ import java.util.List;
 import model.items.IEquipableItem;
 import model.map.Location;
 
+
 /**
  * This class represents an abstract unit.
  * <p>
@@ -21,6 +22,7 @@ import model.map.Location;
 public abstract class AbstractUnit implements IUnit {
 
   protected final List<IEquipableItem> items = new ArrayList<>();
+  private final boolean agressive;
   private int currentHitPoints;
   private final int movement;
   protected IEquipableItem equippedItem;
@@ -39,17 +41,21 @@ public abstract class AbstractUnit implements IUnit {
    *     maximum amount of items this unit can carry
    */
   protected AbstractUnit(final int hitPoints, final int movement,
-      final Location location, final int maxItems, final IEquipableItem... items) {
+                         final Location location, final int maxItems, final boolean aggresive, final IEquipableItem... items) {
     this.currentHitPoints = hitPoints;
     this.movement = movement;
     this.location = location;
     this.items.addAll(Arrays.asList(items).subList(0, min(maxItems, items.length)));
+    this.agressive = aggresive;
   }
 
   @Override
   public int getCurrentHitPoints() {
     return currentHitPoints;
   }
+
+  @Override
+  public  void setCurrentHitPoints(int i) { this.currentHitPoints = i; }
 
   @Override
   public List<IEquipableItem> getItems() {
@@ -91,7 +97,7 @@ public abstract class AbstractUnit implements IUnit {
 
   @Override
   public boolean attackViable(IUnit enemy) {
-    if (this.getEquippedItem() != null && !this.getEquippedItem().isHealer()){
+    if (this.getEquippedItem() != null && !this.getEquippedItem().isHealer() && this.isAgressive()){
       int min_i = this.getEquippedItem().getMinRange();
       int max_i = this.getEquippedItem().getMaxRange();
       double dist = this.getLocation().distanceTo(enemy.getLocation());
@@ -102,29 +108,30 @@ public abstract class AbstractUnit implements IUnit {
     return false;
   }
 
+  protected boolean isAgressive(){ return agressive; }
+
   @Override
   public void attack(IUnit enemy) {
-    enemy.attacked(this.getEquippedItem());
-    enemy.attackBack(this);
+    if(this.attackViable(enemy)) {
+      enemy.attackedBy(this.getEquippedItem());
+      enemy.attackBack(this);
+    }
+  }
+
+  @Override
+  public void attackedBy(IEquipableItem equippedItem) {
+    int damage = equippedItem.fightAgainst(this.getEquippedItem()); // Por pensar
+    int health = this.getCurrentHitPoints();
+    this.setCurrentHitPoints(health - damage);
   }
 
   @Override
   public void attackBack(AbstractUnit enemy){
     if(this.attackViable(enemy)){
-      int damage = this.getEquippedItem().i_isAttacked(enemy.getEquippedItem());
+      int damage = this.getEquippedItem().fightAgainst(enemy.getEquippedItem());
       int health = enemy.getCurrentHitPoints();
       enemy.setCurrentHitPoints(health - damage);
     }
   }
 
-  @Override
-  public void attacked(IEquipableItem equippedItem) {
-    int damage = this.getEquippedItem().i_isAttacked(equippedItem); // Por pensar
-    int health = this.getCurrentHitPoints();
-    this.setCurrentHitPoints(health - damage);
-  }
-
-  protected void setCurrentHitPoints(int i) {
-    this.currentHitPoints = i;
-  }
 }

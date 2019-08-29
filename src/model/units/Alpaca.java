@@ -26,7 +26,7 @@ public class Alpaca extends AbstractUnit {
    */
   public Alpaca(final int hitPoints, final int movement, final Location location,
       final IEquipableItem... items) {
-    super(hitPoints, movement, location, Integer.MAX_VALUE, items);
+    super(hitPoints, movement, location, Integer.MAX_VALUE, false, items);
   }
 
   /**

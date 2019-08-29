@@ -26,4 +26,20 @@ public class Bow extends AbstractItem {
     this.minRange = Math.max(minRange, 2);
     this.maxRange = Math.max(maxRange, this.minRange);
   }
+
+
+  @Override
+  public int attackedByAxe(IEquipableItem axe) {
+    return axe.getPower();
+  }
+
+  @Override
+  public int attackedBySword(IEquipableItem sword) {
+    return sword.getPower();
+  }
+
+  @Override
+  public int attackedBySpear(IEquipableItem spear) {
+    return spear.getPower();
+  }
 }

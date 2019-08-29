@@ -15,7 +15,7 @@ public class SwordMaster extends AbstractUnit {
 
   public SwordMaster(final int hitPoints, final int movement, final Location location,
       IEquipableItem... items) {
-    super(hitPoints, movement, location, 3, items);
+    super(hitPoints, movement, location, 3, true, items);
   }
 
   /**

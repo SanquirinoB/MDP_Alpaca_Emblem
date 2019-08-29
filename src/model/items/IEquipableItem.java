@@ -48,5 +48,11 @@ public interface IEquipableItem {
 
   boolean isHealer();
 
-  public int i_isAttacked(IEquipableItem equippedItem);
+  int fightAgainst(IEquipableItem enemyEquippedItem);
+
+  int attackedByAxe(IEquipableItem axe);
+
+  int attackedBySpear(IEquipableItem spear);
+
+  int attackedBySword(IEquipableItem sword);
 }

@@ -23,7 +23,7 @@ public class Cleric extends AbstractUnit {
    */
   public Cleric(final int hitPoints, final int movement, final Location location,
       IEquipableItem... items) {
-    super(hitPoints, movement, location, 3, items);
+    super(hitPoints, movement, location, 3, false, items);
   }
 
   /**

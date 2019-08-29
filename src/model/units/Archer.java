@@ -28,7 +28,7 @@ public class Archer extends AbstractUnit {
    */
   public Archer(final int hitPoints, final int movement, final Location position,
       final IEquipableItem... items) {
-    super(hitPoints, movement, position, 3, items);
+    super(hitPoints, movement, position, 3, true, items);
   }
 
   /**

@@ -25,4 +25,25 @@ public class Sword extends AbstractItem {
   public Sword(final String name, final int power, final int minRange, final int maxRange) {
     super(name, power, minRange, maxRange, false);
   }
+
+  @Override
+  public int fightAgainst(IEquipableItem other){
+    return other.attackedBySword(this);
+  }
+
+  @Override
+  public int attackedByAxe(IEquipableItem axe) {
+      return axe.getPower() - 20;
+    }
+
+  @Override
+  public int attackedBySword(IEquipableItem sword) {
+    return sword.getPower();
+  }
+
+  @Override
+  public int attackedBySpear(IEquipableItem spear) {
+    return spear.getPower()*(3/2);
+  }
+
 }

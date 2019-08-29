@@ -103,4 +103,17 @@ public abstract class AbstractItem implements IEquipableItem {
     return ishealer;
   }
 
+  @Override
+  public int fightAgainst(IEquipableItem enemyEquippedItem) {
+    return this.getPower();
+  }
+
+  @Override
+  public abstract int attackedByAxe(IEquipableItem axe);
+
+  @Override
+  public abstract int attackedBySword(IEquipableItem sword);
+
+  @Override
+  public abstract int attackedBySpear(IEquipableItem spear);
 }
