@@ -98,6 +98,7 @@ public interface ITestUnit {
   @Test
   void testMovement();
 
+
   /**
    * @return the test field
    */
@@ -107,5 +108,13 @@ public interface ITestUnit {
    * @return the target Alpaca
    */
   Alpaca getTargetAlpaca();
+
+  IUnit getFightExample();
+
+  @Test
+  void testAttackViable();
+
+  @Test
+  void testAttack();
 
 }

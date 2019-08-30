@@ -207,4 +207,35 @@ public abstract class AbstractTestUnit implements ITestUnit {
   public Alpaca getTargetAlpaca() {
     return targetAlpaca;
   }
+
+  @Override
+  public IUnit getFightExample() {
+    IUnit ex = getTestUnit();
+    ex.setLocation(field.getCell(100, 0));
+    return ex;
+  }
+
+  @Override
+  @Test
+  public void testAttackViable() {
+    IUnit other = getTestUnit();
+    other.setEquippedItem(getAxe());
+    assertEquals(false, other.attackViable(getFightExample()));
+    assertEquals(false, targetAlpaca.attackViable(other));
+  }
+
+  @Override
+  @Test
+  public void testAttack() {
+    IUnit murder = getTestUnit();
+    IUnit victim = getTestUnit();
+    murder.setLocation(field.getCell(1, 1));
+    murder.setEquippedItem(getSword());
+    victim.setEquippedItem(getSpear());
+    int m_health = murder.getCurrentHitPoints();
+    // int v_health = victim.getCurrentHitPoints();
+    murder.attack(victim);
+    assertEquals(m_health - getSpear().getPower()*(3/2), murder.getCurrentHitPoints());
+  }
+
 }
