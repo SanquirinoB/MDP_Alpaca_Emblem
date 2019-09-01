@@ -25,6 +25,7 @@ public class StaffTest extends AbstractTestItem {
     expectedPower = 5;
     expectedMinRange = 1;
     expectedMaxRange = 1;
+    expectedHealer = true;
     staff = new Staff(expectedName, expectedPower, expectedMinRange, expectedMaxRange);
   }
 

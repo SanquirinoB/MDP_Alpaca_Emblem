@@ -3,6 +3,7 @@ package model.units;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertNull;
 
+import model.map.Location;
 import org.junit.jupiter.api.Test;
 
 /**
@@ -42,4 +43,24 @@ public class ArcherTest extends AbstractTestUnit {
     assertEquals(bow, archer.getEquippedItem());
   }
 
+  @Override
+  @Test
+  public void testAttack(){
+    IUnit murder = new Archer(50, 2, field.getCell(0,0));
+    IUnit victim = new Alpaca(50, 2, field.getCell(1,2));
+    IUnit victim2 = new Fighter(50, 2, field.getCell(1,2));
+    murder.setEquippedItem(getBow());
+    victim2.setEquippedItem(getAxe());
+    int m_health = murder.getCurrentHitPoints();
+    int v_health = victim.getCurrentHitPoints();
+    int v2_health = victim2.getCurrentHitPoints();
+    murder.attack(victim);
+    assertEquals(v_health - getBow().getPower(), victim.getCurrentHitPoints());
+    assertEquals(m_health, murder.getCurrentHitPoints());
+    murder.attack(victim2);
+    assertEquals(v2_health - getBow().getPower(), victim2.getCurrentHitPoints());
+    assertEquals(m_health, murder.getCurrentHitPoints());
+  }
 }
+
+

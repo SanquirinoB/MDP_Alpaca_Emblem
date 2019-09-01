@@ -25,6 +25,7 @@ public class SpearTest extends AbstractTestItem {
     expectedPower = 10;
     expectedMinRange = 1;
     expectedMaxRange = 3;
+    expectedHealer = false;
     javelin = new Spear(expectedName, expectedPower, expectedMinRange, expectedMaxRange);
   }
 

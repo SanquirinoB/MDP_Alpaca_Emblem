@@ -24,8 +24,8 @@ public class Alpaca extends AbstractUnit {
    * @param location
    *     current position of the unit
    */
-  public Alpaca(final int hitPoints, final int movement, final Location location,
-      final IEquipableItem... items) {
+  Alpaca(int hitPoints, final int movement, Location location,
+         IEquipableItem... items) {
     super(hitPoints, movement, location, Integer.MAX_VALUE, false, items);
   }
 

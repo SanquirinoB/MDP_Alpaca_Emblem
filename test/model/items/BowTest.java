@@ -28,6 +28,7 @@ public class BowTest extends AbstractTestItem {
     expectedPower = 8;
     expectedMinRange = 2;
     expectedMaxRange = 4;
+    expectedHealer = false;
     bow = new Bow(expectedName, expectedPower, expectedMinRange, expectedMaxRange);
   }
 

@@ -21,7 +21,7 @@ import model.map.Location;
  */
 public abstract class AbstractUnit implements IUnit {
 
-  protected final List<IEquipableItem> items = new ArrayList<>();
+  protected List<IEquipableItem> items = new ArrayList<>();
   private final boolean agressive;
   private int currentHitPoints;
   private final int movement;
@@ -40,13 +40,13 @@ public abstract class AbstractUnit implements IUnit {
    * @param maxItems
    *     maximum amount of items this unit can carry
    */
-  protected AbstractUnit(final int hitPoints, final int movement,
-                         final Location location, final int maxItems, final boolean aggresive, final IEquipableItem... items) {
+  protected AbstractUnit( int hitPoints,  int movement,
+                          Location location, final int maxItems, final boolean agressive,  IEquipableItem... items) {
     this.currentHitPoints = hitPoints;
     this.movement = movement;
     this.location = location;
     this.items.addAll(Arrays.asList(items).subList(0, min(maxItems, items.length)));
-    this.agressive = aggresive;
+    this.agressive = agressive;
   }
 
   @Override
@@ -78,7 +78,7 @@ public abstract class AbstractUnit implements IUnit {
   }
 
   @Override
-  public void setLocation(final Location location) {
+  public void setLocation(Location location) {
     this.location = location;
   }
 
@@ -97,18 +97,30 @@ public abstract class AbstractUnit implements IUnit {
 
   @Override
   public boolean attackViable(IUnit enemy) {
-    if (this.getEquippedItem() != null && !this.getEquippedItem().isHealer() && this.isAgressive()){
+    if (((this.getEquippedItem() != null) && (!this.getEquippedItem().isHealer()) )&& (this.isAgressive())){
       int min_i = this.getEquippedItem().getMinRange();
       int max_i = this.getEquippedItem().getMaxRange();
       double dist = this.getLocation().distanceTo(enemy.getLocation());
       if(min_i <= dist && dist <= max_i) {
+        System.out.println("primer.2 if");
         return true;
       }
+      else {
+        System.out.println("primer.2 else");
+        return false;
+      }
     }
-    return false;
+    else {
+      System.out.println("F");
+      return false;
+    }
+
   }
 
-  protected boolean isAgressive(){ return agressive; }
+  @Override
+  public boolean isAgressive() {
+    return agressive;
+  }
 
   @Override
   public void attack(IUnit enemy) {
@@ -120,17 +132,26 @@ public abstract class AbstractUnit implements IUnit {
 
   @Override
   public void attackedBy(IEquipableItem equippedItem) {
-    int damage = equippedItem.fightAgainst(this.getEquippedItem()); // Por pensar
+    int damage;
+    if (this.isAgressive()) {
+      damage = equippedItem.fightAgainst(this.getEquippedItem());
+    }
+    else {
+      damage = equippedItem.getPower();
+    }
     int health = this.getCurrentHitPoints();
     this.setCurrentHitPoints(health - damage);
   }
 
   @Override
   public void attackBack(AbstractUnit enemy){
-    if(this.attackViable(enemy)){
-      int damage = this.getEquippedItem().fightAgainst(enemy.getEquippedItem());
-      int health = enemy.getCurrentHitPoints();
-      enemy.setCurrentHitPoints(health - damage);
+    if(this.isAgressive()) {
+      if (this.attackViable(enemy)) {
+        System.out.println("No se pq el clerigo pasa");
+        int damage = this.getEquippedItem().fightAgainst(enemy.getEquippedItem());
+        int health = enemy.getCurrentHitPoints();
+        enemy.setCurrentHitPoints(health - damage);
+      }
     }
   }
 

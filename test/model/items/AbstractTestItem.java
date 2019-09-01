@@ -67,6 +67,7 @@ public abstract class AbstractTestItem {
     assertEquals(getExpectedBasePower(), getTestItem().getPower());
     assertEquals(getExpectedMinRange(), getTestItem().getMinRange());
     assertEquals(getExpectedMaxRange(), getTestItem().getMaxRange());
+    assertEquals(getExpectedIsHealer(), getTestItem().isHealer());
   }
 
   /**
@@ -102,6 +103,10 @@ public abstract class AbstractTestItem {
     return expectedMaxRange;
   }
 
+  /**
+   * @return the expected state of being healer or not
+   */
+  public boolean getExpectedIsHealer() { return expectedHealer; }
 
   /**
    * Checks that the Item can be correctly equipped to a unit
@@ -119,4 +124,5 @@ public abstract class AbstractTestItem {
    * @return a unit that can equip the item being tested
    */
   public abstract IUnit getTestUnit();
+
 }

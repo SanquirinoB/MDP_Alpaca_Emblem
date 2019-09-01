@@ -74,9 +74,12 @@ public interface IUnit {
 
   boolean attackViable(IUnit enemy);
 
+  boolean isAgressive();
+
   void attack(IUnit enemy);
 
-  public void attackedBy(IEquipableItem equippedItem);
+  void attackedBy(IEquipableItem equippedItem);
 
-  public void attackBack(AbstractUnit abstractUnit);
+  void attackBack(AbstractUnit abstractUnit);
+
 }

@@ -3,6 +3,7 @@ package model.units;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertNull;
 
+import model.map.Location;
 import org.junit.jupiter.api.Test;
 
 /**
@@ -34,5 +35,18 @@ public class ClericTest extends AbstractTestUnit {
     assertNull(cleric.getEquippedItem());
     cleric.equipItem(staff);
     assertEquals(staff, cleric.getEquippedItem());
+  }
+
+  @Override
+  @Test
+  public void testAttack() {
+    IUnit murder = new Fighter(50, 2, field.getCell(0,0));
+    IUnit victim = new Cleric(50, 2, field.getCell(1,0));
+    murder.setEquippedItem(getAxe());
+    int m_health = murder.getCurrentHitPoints();
+    int v_health = victim.getCurrentHitPoints();
+    murder.attack(victim);
+    assertEquals(v_health - getBow().getPower(), victim.getCurrentHitPoints());
+    assertEquals(m_health, murder.getCurrentHitPoints());
   }
 }

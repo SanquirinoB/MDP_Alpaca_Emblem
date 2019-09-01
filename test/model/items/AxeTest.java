@@ -22,6 +22,7 @@ class AxeTest extends AbstractTestItem {
     expectedPower = 10;
     expectedMinRange = 1;
     expectedMaxRange = 2;
+    expectedHealer = false;
     axe = new Axe(expectedName, expectedPower, expectedMinRange, expectedMaxRange);
   }
 
@@ -58,6 +59,7 @@ class AxeTest extends AbstractTestItem {
   public IUnit getTestUnit() {
     return fighter;
   }
+
 
 
 }

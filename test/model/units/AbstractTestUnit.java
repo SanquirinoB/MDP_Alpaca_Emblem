@@ -1,14 +1,12 @@
 package model.units;
 
-import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.junit.jupiter.api.Assertions.assertNull;
-import static org.junit.jupiter.api.Assertions.assertTrue;
-
 import model.items.*;
 import model.map.Field;
 import model.map.Location;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
+
+import static org.junit.jupiter.api.Assertions.*;
 
 /**
  * @author Ignacio Slater Muñoz
@@ -49,6 +47,7 @@ public abstract class AbstractTestUnit implements ITestUnit {
     this.field.addCells(true, new Location(0, 0), new Location(0, 1), new Location(0, 2),
         new Location(1, 0), new Location(1, 1), new Location(1, 2), new Location(2, 0),
         new Location(2, 1), new Location(2, 2));
+    this.field.isConnected();
   }
 
   /**
@@ -62,11 +61,11 @@ public abstract class AbstractTestUnit implements ITestUnit {
    */
   @Override
   public void setWeapons() {
-    this.axe = new Axe("Axe", 10, 1, 2);
-    this.sword = new Sword("Sword", 10, 1, 2);
-    this.spear = new Spear("Spear", 10, 1, 2);
-    this.staff = new Staff("Staff", 10, 1, 2);
-    this.bow = new Bow("Bow", 10, 2, 3);
+    this.axe = new Axe("Axe", 20, 1, 2);
+    this.sword = new Sword("Sword", 20, 1, 2);
+    this.spear = new Spear("Spear", 20, 1, 2);
+    this.staff = new Staff("Staff", 20, 1, 2);
+    this.bow = new Bow("Bow", 20, 2, 3);
   }
 
   /**
@@ -215,27 +214,18 @@ public abstract class AbstractTestUnit implements ITestUnit {
     return ex;
   }
 
+
   @Override
   @Test
   public void testAttackViable() {
     IUnit other = getTestUnit();
     other.setEquippedItem(getAxe());
-    assertEquals(false, other.attackViable(getFightExample()));
-    assertEquals(false, targetAlpaca.attackViable(other));
+    assertFalse(other.attackViable(getFightExample()));
+    assertFalse(targetAlpaca.attackViable(other));
   }
 
   @Override
-  @Test
-  public void testAttack() {
-    IUnit murder = getTestUnit();
-    IUnit victim = getTestUnit();
-    murder.setLocation(field.getCell(1, 1));
-    murder.setEquippedItem(getSword());
-    victim.setEquippedItem(getSpear());
-    int m_health = murder.getCurrentHitPoints();
-    // int v_health = victim.getCurrentHitPoints();
-    murder.attack(victim);
-    assertEquals(m_health - getSpear().getPower()*(3/2), murder.getCurrentHitPoints());
-  }
+  public abstract void testAttack();
+
 
 }
