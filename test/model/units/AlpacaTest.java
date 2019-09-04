@@ -1,9 +1,9 @@
 package model.units;
 
-import model.map.Location;
+import javafx.scene.shape.Arc;
 import org.junit.jupiter.api.Test;
 
-import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.*;
 
 /**
  * Test set for the alpaca unit
@@ -11,7 +11,7 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
  * @author Ignacio Slater Muñoz
  * @since 1.0
  */
-public class AlpacaTest extends AbstractTestUnit {
+public class AlpacaTest extends AbstractTestUnit{
 
   private Alpaca alpaca;
 
@@ -34,11 +34,21 @@ public class AlpacaTest extends AbstractTestUnit {
     int m_health = murder.getCurrentHitPoints();
     int v_health = victim.getCurrentHitPoints();
     murder.attack(victim);
-    boolean is = murder.attackViable(victim);
-    double dist = murder.getLocation().distanceTo(victim.getLocation());
-    int m_health2 = murder.getCurrentHitPoints();
-    int v_health2 = victim.getCurrentHitPoints();
     assertEquals(v_health - getBow().getPower(), victim.getCurrentHitPoints());
     assertEquals(m_health, murder.getCurrentHitPoints());
-    }
   }
+
+
+  @Override
+  @Test
+  public void testExchange() {
+    IUnit alpaca = new Alpaca(50, 2, field.getCell(0,0), getAxe());
+    IUnit other = new Archer(50, 2, field.getCell(0,0));
+    alpaca.exchangeTo(other,0);
+    assertEquals(getAxe(), other.getItems().get(0));
+    assertTrue(alpaca.getItems().isEmpty());
+  }
+
+
+}
+

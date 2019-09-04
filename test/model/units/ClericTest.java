@@ -49,4 +49,7 @@ public class ClericTest extends AbstractTestUnit {
     assertEquals(v_health - getBow().getPower(), victim.getCurrentHitPoints());
     assertEquals(m_health, murder.getCurrentHitPoints());
   }
+
+  @Override
+  public void testExchange(){}
 }

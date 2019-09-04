@@ -1,10 +1,12 @@
 package model.units;
 
-import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.junit.jupiter.api.Assertions.assertNull;
-
+import model.items.IEquipableItem;
 import model.map.Location;
 import org.junit.jupiter.api.Test;
+
+import java.util.List;
+
+import static org.junit.jupiter.api.Assertions.*;
 
 /**
  * Test set for the Archer unit.
@@ -61,6 +63,21 @@ public class ArcherTest extends AbstractTestUnit {
     assertEquals(v2_health - getBow().getPower(), victim2.getCurrentHitPoints());
     assertEquals(m_health, murder.getCurrentHitPoints());
   }
+
+  @Override
+  @Test
+  public void testExchange() {
+    IUnit alpaca = new Alpaca(50, 2, field.getCell(0, 0), getAxe(), getStaff());
+    IUnit archer = new Archer(50, 2, field.getCell(0, 0), getBow(), getSpear());
+    alpaca.exchangeTo(archer, 1);
+    assertEquals(getStaff(), archer.getItems().get(2));
+    List<IEquipableItem> list = archer.getItems();
+    alpaca.exchangeTo(archer,0);
+    // It should say "You cant do it"
+    assertEquals(list, archer.getItems());
+
+  }
+
 }
 
 

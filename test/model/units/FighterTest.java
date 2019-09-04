@@ -58,4 +58,7 @@ public class FighterTest extends AbstractTestUnit {
     assertEquals(m_health, murder.getCurrentHitPoints());
 
   }
+
+  @Override
+  public void testExchange(){}
 }

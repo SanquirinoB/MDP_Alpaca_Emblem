@@ -210,7 +210,7 @@ public abstract class AbstractTestUnit implements ITestUnit {
   @Override
   public IUnit getFightExample() {
     IUnit ex = getTestUnit();
-    ex.setLocation(field.getCell(100, 0));
+    ex.setLocation(field.getCell(2, 2));
     return ex;
   }
 
@@ -224,8 +224,11 @@ public abstract class AbstractTestUnit implements ITestUnit {
     assertFalse(targetAlpaca.attackViable(other));
   }
 
+
   @Override
   public abstract void testAttack();
+
+
 
 
 }

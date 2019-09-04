@@ -82,4 +82,9 @@ public interface IUnit {
 
   void attackBack(AbstractUnit abstractUnit);
 
+  int getMaxItems();
+
+  boolean exchangeViable(IUnit giver, IUnit receiver);
+
+  void exchangeTo(IUnit unit, int item);
 }

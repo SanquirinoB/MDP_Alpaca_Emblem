@@ -28,8 +28,6 @@ public class Axe extends AbstractItem {
   public Axe(final String name, final int power, final int minRange, final int maxRange) {
     super(name, power, minRange, maxRange, false);
   }
-  // Give them use
-
 
   @Override
   public int fightAgainst(IEquipableItem other){

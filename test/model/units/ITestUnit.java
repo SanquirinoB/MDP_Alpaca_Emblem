@@ -117,6 +117,7 @@ public interface ITestUnit {
   @Test
   void testAttack();
 
-
+  @Test
+  void testExchange();
 
 }
