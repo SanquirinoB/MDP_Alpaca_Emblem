@@ -104,8 +104,8 @@ public abstract class AbstractItem implements IEquipableItem {
   }
 
   @Override
-  public int fightAgainst(IEquipableItem enemyEquippedItem) {
-    return this.getPower();
+  public int fightAgainst(IEquipableItem enemyEquippedItem){
+    return enemyEquippedItem.getPower();
   }
 
   @Override
@@ -116,4 +116,31 @@ public abstract class AbstractItem implements IEquipableItem {
 
   @Override
   public abstract int attackedBySpear(IEquipableItem spear);
+
+  @Override
+  public abstract int attackedBySoulBook(IEquipableItem soulBook);
+
+  @Override
+  public abstract int attackedByDarkBook(IEquipableItem darkBook);
+
+  @Override
+  public abstract int attackedByLightBook(IEquipableItem lightBook);
+
+  @Override
+  public int powerful(IEquipableItem item) {
+    return item.getPower()*(3/2);
+  }
+
+  @Override
+  public int weak(IEquipableItem item) {
+    return item.getPower()-20;
+  }
+
+  @Override
+  public abstract int attackedByBow(IEquipableItem bow);
+
+  @Override
+  public abstract int healedByStaff(IEquipableItem staff);
+
+
 }

@@ -46,4 +46,19 @@ public class Sword extends AbstractItem {
     return spear.getPower()*(3/2);
   }
 
+  @Override
+  public int attackedBySoulBook(IEquipableItem soulBook) {
+    return 0;
+  }
+
+  @Override
+  public int attackedByDarkBook(IEquipableItem darkBook) {
+    return 0;
+  }
+
+  @Override
+  public int attackedByLightBook(IEquipableItem lightBook) {
+    return 0;
+  }
+
 }

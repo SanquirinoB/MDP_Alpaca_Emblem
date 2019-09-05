@@ -28,18 +28,27 @@ public class Spear extends AbstractItem {
   }
 
   @Override
-  public int attackedByAxe(IEquipableItem axe) {
-    return axe.getPower()*(3/2);
-  }
+  public int attackedByAxe(IEquipableItem axe) {return powerful(axe);}
 
   @Override
-  public int attackedBySword(IEquipableItem sword) {
-    return sword.getPower() - 20;
-  }
+  public int attackedBySword(IEquipableItem sword) {return weak(sword);}
 
   @Override
-  public int attackedBySpear(IEquipableItem spear) {
-    return spear.getPower();
-  }
+  public int attackedBySpear(IEquipableItem spear) { return spear.getPower();}
+
+  @Override
+  public int attackedBySoulBook(IEquipableItem soulBook) { return powerful(soulBook);}
+
+  @Override
+  public int attackedByDarkBook(IEquipableItem darkBook) {return powerful(darkBook);}
+
+  @Override
+  public int attackedByLightBook(IEquipableItem lightBook) {return powerful(lightBook);}
+
+  @Override
+  public int attackedByBow(IEquipableItem bow) { return bow.getPower();}
+
+  @Override
+  public int healedByStaff(IEquipableItem staff) { return -staff.getPower();}
 
 }

@@ -55,4 +55,18 @@ public interface IEquipableItem {
   int attackedBySpear(IEquipableItem spear);
 
   int attackedBySword(IEquipableItem sword);
+
+  int attackedBySoulBook(IEquipableItem soulBook);
+
+  int attackedByDarkBook(IEquipableItem darkBook);
+
+  int attackedByLightBook(IEquipableItem lightBook);
+
+  int powerful(IEquipableItem item);
+
+  int weak(IEquipableItem item);
+
+  int attackedByBow(IEquipableItem bow);
+
+  int healedByStaff(IEquipableItem staff);
 }
