@@ -1,5 +1,7 @@
 package model.items;
 
+import model.units.Cleric;
+
 /**
  * This class represents a <i>Staff</i> type item.
  * <p>
@@ -55,4 +57,11 @@ public class Staff extends AbstractItem {
 
   @Override
   public int healedByStaff(IEquipableItem staff) {return -staff.getPower();}
+
+    @Override
+    public void eqquipedByCleric(Cleric cleric) {
+        cleric.setEquippedItem(this);
+    }
+
+
 }

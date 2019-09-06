@@ -53,7 +53,7 @@ public class HeroTest extends AbstractTestUnit {
     assertEquals(m_health, murder.getCurrentHitPoints());
     murder.attack(victim2);
     assertEquals(v2_health - (getSpear().getPower() - 20), victim2.getCurrentHitPoints());
-    assertEquals(m_health - getAxe().getPower()*(3/2), murder.getCurrentHitPoints());
+    assertEquals(m_health - getAxe().getPower()*3/2, murder.getCurrentHitPoints());
   }
 
   @Override

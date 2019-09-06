@@ -1,5 +1,7 @@
 package model.items;
 
+import model.units.Sorcerer;
+
 public class DarkBook extends AbstractBook {
     /**
      * Constructor for a default item without any special behaviour.
@@ -53,4 +55,9 @@ public class DarkBook extends AbstractBook {
 
     @Override
     public int healedByStaff(IEquipableItem staff) { return -staff.getPower(); }
+
+    @Override
+    public void eqquipedBySorcerer(Sorcerer sorcerer) {
+        sorcerer.setEquippedItem(this);
+    }
 }

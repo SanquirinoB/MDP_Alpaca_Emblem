@@ -1,5 +1,6 @@
 package model.items;
 
+import model.units.Fighter;
 import model.units.IUnit;
 
 /**
@@ -61,5 +62,10 @@ public class Axe extends AbstractItem {
 
   @Override
   public int healedByStaff(IEquipableItem staff) {return -staff.getPower();}
+
+    @Override
+    public void eqquipedByFighter(Fighter fighter) {
+        fighter.setEquippedItem(this);
+    }
 
 }

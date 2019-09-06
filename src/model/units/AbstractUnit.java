@@ -142,7 +142,6 @@ public abstract class AbstractUnit implements IUnit {
   public void attackBack(AbstractUnit enemy) {
     if (this.isAgressive()) {
       if (this.attackViable(enemy)) {
-        System.out.println("No se pq el clerigo pasa");
         int damage = this.getEquippedItem().fightAgainst(enemy.getEquippedItem());
         int health = enemy.getCurrentHitPoints();
         enemy.setCurrentHitPoints(health - damage);

@@ -1,6 +1,6 @@
 package model.items;
 
-import model.units.IUnit;
+import model.units.*;
 
 /**
  * Abstract class that defines some common information and behaviour between all items.
@@ -128,7 +128,7 @@ public abstract class AbstractItem implements IEquipableItem {
 
   @Override
   public int powerful(IEquipableItem item) {
-    return item.getPower()*(3/2);
+    return item.getPower()*3/2;
   }
 
   @Override
@@ -141,6 +141,24 @@ public abstract class AbstractItem implements IEquipableItem {
 
   @Override
   public abstract int healedByStaff(IEquipableItem staff);
+
+  @Override
+  public void eqquipedByArcher(Archer archer) {}
+
+  @Override
+  public void eqquipedByCleric(Cleric cleric) {}
+
+  @Override
+  public void eqquipedByFighter(Fighter fighter) {}
+
+  @Override
+  public void eqquipedByHero(Hero hero) {}
+
+  @Override
+  public void eqquipedBySorcerer(Sorcerer sorcerer) {}
+
+  @Override
+  public void eqquipedBySwordMaster(SwordMaster swordMaster) {}
 
 
 }

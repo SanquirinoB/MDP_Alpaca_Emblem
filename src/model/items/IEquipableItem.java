@@ -1,6 +1,6 @@
 package model.items;
 
-import model.units.IUnit;
+import model.units.*;
 
 /**
  * This interface represents the <i>weapons</i> that the units of the game can use.
@@ -67,6 +67,18 @@ public interface IEquipableItem {
   int weak(IEquipableItem item);
 
   int attackedByBow(IEquipableItem bow);
-
+// falta test
   int healedByStaff(IEquipableItem staff);
+
+  void eqquipedByArcher(Archer archer);
+
+  void eqquipedByCleric(Cleric cleric);
+
+  void eqquipedByFighter(Fighter fighter);
+
+  void eqquipedByHero(Hero hero);
+
+  void eqquipedBySorcerer(Sorcerer sorcerer);
+
+  void eqquipedBySwordMaster(SwordMaster swordMaster);
 }

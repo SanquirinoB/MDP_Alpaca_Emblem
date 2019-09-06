@@ -1,5 +1,8 @@
 package model.items;
 
+import model.units.Hero;
+import model.units.SwordMaster;
+
 /**
  * This class represents a sword type item.
  * <p>
@@ -33,32 +36,33 @@ public class Sword extends AbstractItem {
 
   @Override
   public int attackedByAxe(IEquipableItem axe) {
-      return axe.getPower() - 20;
+      return weak(axe);
     }
 
   @Override
-  public int attackedBySword(IEquipableItem sword) {
-    return sword.getPower();
-  }
+  public int attackedBySword(IEquipableItem sword) { return sword.getPower();}
 
   @Override
   public int attackedBySpear(IEquipableItem spear) {
-    return spear.getPower()*(3/2);
+    return powerful(spear);
   }
 
   @Override
-  public int attackedBySoulBook(IEquipableItem soulBook) {
-    return 0;
-  }
+  public int attackedBySoulBook(IEquipableItem soulBook) {return powerful(soulBook);}
 
   @Override
-  public int attackedByDarkBook(IEquipableItem darkBook) {
-    return 0;
-  }
+  public int attackedByDarkBook(IEquipableItem darkBook) { return powerful(darkBook);}
 
   @Override
-  public int attackedByLightBook(IEquipableItem lightBook) {
-    return 0;
-  }
+  public int attackedByLightBook(IEquipableItem lightBook) { return powerful(lightBook);}
+
+  @Override
+  public int attackedByBow(IEquipableItem bow) {return bow.getPower();}
+
+  @Override
+  public int healedByStaff(IEquipableItem staff) {return -staff.getPower();}
+
+  @Override
+  public void eqquipedBySwordMaster(SwordMaster swordMaster) { swordMaster.setEquippedItem(this); }
 
 }

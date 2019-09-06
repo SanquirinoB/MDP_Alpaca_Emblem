@@ -1,5 +1,7 @@
 package model.items;
 
+import model.units.Hero;
+
 /**
  * This class represents a <i>spear</i>.
  * <p>
@@ -50,5 +52,10 @@ public class Spear extends AbstractItem {
 
   @Override
   public int healedByStaff(IEquipableItem staff) { return -staff.getPower();}
+
+    @Override
+    public void eqquipedByHero(Hero hero) {
+        hero.setEquippedItem(this);
+    }
 
 }

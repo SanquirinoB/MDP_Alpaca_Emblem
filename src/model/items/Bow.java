@@ -1,5 +1,7 @@
 package model.items;
 
+import model.units.Archer;
+
 /**
  * @author Ignacio Slater Muñoz
  * @since
@@ -68,4 +70,10 @@ public class Bow extends AbstractItem {
 
   @Override
   public int healedByStaff(IEquipableItem staff) { return -staff.getPower();}
+
+    @Override
+    public void eqquipedByArcher(Archer archer) {
+        archer.setEquippedItem(this);
+    }
+
 }

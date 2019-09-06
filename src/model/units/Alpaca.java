@@ -36,7 +36,7 @@ public class Alpaca extends AbstractUnit {
    */
   @Override
   public void equipItem(final IEquipableItem item) {
-    // Method body intentionally left empty
+
   }
 
 }
