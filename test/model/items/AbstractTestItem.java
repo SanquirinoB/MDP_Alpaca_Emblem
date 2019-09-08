@@ -126,4 +126,7 @@ public abstract class AbstractTestItem {
   public abstract IUnit getTestUnit();
 
 
+    public abstract void testFightAgainst();
+
+
 }

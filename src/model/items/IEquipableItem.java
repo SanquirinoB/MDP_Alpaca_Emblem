@@ -67,8 +67,6 @@ public interface IEquipableItem {
   int weak(IEquipableItem item);
 
   int attackedByBow(IEquipableItem bow);
-// falta test
-  int healedByStaff(IEquipableItem staff);
 
   void eqquipedByArcher(Archer archer);
 

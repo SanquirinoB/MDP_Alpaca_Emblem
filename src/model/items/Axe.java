@@ -61,10 +61,7 @@ public class Axe extends AbstractItem {
   public int attackedByBow(IEquipableItem bow) { return bow.getPower();}
 
   @Override
-  public int healedByStaff(IEquipableItem staff) {return -staff.getPower();}
-
-    @Override
-    public void eqquipedByFighter(Fighter fighter) {
+  public void eqquipedByFighter(Fighter fighter) {
         fighter.setEquippedItem(this);
     }
 

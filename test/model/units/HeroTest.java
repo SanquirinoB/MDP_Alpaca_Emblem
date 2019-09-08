@@ -56,6 +56,16 @@ public class HeroTest extends AbstractTestUnit {
     assertEquals(m_health - getAxe().getPower()*3/2, murder.getCurrentHitPoints());
   }
 
+    @Override
+    @Test
+    public void testEquipItem() {
+        hero.equipItem(axe);
+        assertNull(hero.getEquippedItem());
+        hero.equipItem(spear);
+        assertEquals(spear, hero.getEquippedItem());
+
+    }
+
   @Override
   public void testExchange(){}
 }

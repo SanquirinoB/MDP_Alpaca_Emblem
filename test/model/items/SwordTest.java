@@ -3,6 +3,9 @@ package model.items;
 import model.map.Location;
 import model.units.IUnit;
 import model.units.SwordMaster;
+import org.junit.jupiter.api.Test;
+
+import static org.junit.jupiter.api.Assertions.assertEquals;
 
 /**
  * Test set for swords
@@ -64,5 +67,16 @@ public class SwordTest extends AbstractTestItem {
   @Override
   public IUnit getTestUnit() {
     return swordMaster;
+  }
+
+  @Override
+  @Test
+  public void testFightAgainst() {
+    Axe axe = new Axe("axe", 10, 1, 2);
+    int damage = sword.fightAgainst(axe);
+    assertEquals(sword.getPower() * 3 / 2, damage);
+    Spear spear = new Spear("spear", 10, 1, 2);
+    damage = sword.fightAgainst(spear);
+    assertEquals(sword.getPower() - 20, damage);
   }
 }

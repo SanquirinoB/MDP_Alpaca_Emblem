@@ -1,5 +1,6 @@
 package model.items;
 
+import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
 import model.map.Location;
@@ -77,5 +78,13 @@ public class BowTest extends AbstractTestItem {
   @Override
   public IUnit getTestUnit() {
     return archer;
+  }
+
+  @Override
+  @Test
+  public void testFightAgainst() {
+    Sword sword = new Sword("sword", 10, 1, 2);
+    int damage = bow.fightAgainst(sword);
+    assertEquals(bow.getPower(), damage);
   }
 }

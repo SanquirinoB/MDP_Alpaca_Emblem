@@ -140,4 +140,10 @@ public interface ITestUnit {
   @Test
   void testExchange();
 
+    @Test
+    void testEquipItem();
+
+    @Test
+    void testHealing();
+
 }

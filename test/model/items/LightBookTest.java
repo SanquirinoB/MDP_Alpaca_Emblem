@@ -1,5 +1,6 @@
 package model.items;
 
+import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
 import model.map.Location;
@@ -52,4 +53,19 @@ public class LightBookTest extends AbstractTestItem{
         assertTrue(getWrongTestItem().getMinRange() > 0);
         assertTrue(getWrongTestItem().getMaxRange() >= getWrongTestItem().getMinRange());
     }
+
+    @Override
+    @Test
+    public void testFightAgainst() {
+        SoulBook sb = new SoulBook("soulBook", 20, 1, 2);
+        int damage = lightBook.fightAgainst(sb);
+        assertEquals(lightBook.getPower() - 20, damage);
+        DarkBook db = new DarkBook("darkBook", 20, 1, 2);
+        damage = lightBook.fightAgainst(db);
+        assertEquals(lightBook.getPower() * 3 / 2, damage);
+        Sword sword = new Sword("sword", 10, 1, 2);
+        damage = lightBook.fightAgainst(sword);
+        assertEquals(lightBook.getPower() * 3 / 2, damage);
+    }
+
 }

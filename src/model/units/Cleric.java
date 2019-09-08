@@ -36,4 +36,11 @@ public class Cleric extends AbstractUnit {
   public void equipItem(final IEquipableItem item) {
     item.eqquipedByCleric(this);
   }
+
+    @Override
+    public void healedByStaff(IUnit friend) {
+        if (this.getEquippedItem() != null) {
+            friend.setCurrentHitPoints(friend.getCurrentHitPoints() + this.getEquippedItem().getPower());
+        }
+    }
 }

@@ -56,5 +56,14 @@ public class SwordMasterTest extends AbstractTestUnit {
   }
 
   @Override
+  @Test
+  public void testEquipItem() {
+    swordMaster.equipItem(darkBook);
+    assertNull(swordMaster.getEquippedItem());
+    swordMaster.equipItem(sword);
+    assertEquals(sword, swordMaster.getEquippedItem());
+  }
+
+  @Override
   public void testExchange(){}
 }

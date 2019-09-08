@@ -60,9 +60,6 @@ public class Sword extends AbstractItem {
   public int attackedByBow(IEquipableItem bow) {return bow.getPower();}
 
   @Override
-  public int healedByStaff(IEquipableItem staff) {return -staff.getPower();}
-
-  @Override
   public void eqquipedBySwordMaster(SwordMaster swordMaster) { swordMaster.setEquippedItem(this); }
 
 }

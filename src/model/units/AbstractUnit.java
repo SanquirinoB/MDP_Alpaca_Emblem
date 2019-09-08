@@ -126,12 +126,23 @@ public abstract class AbstractUnit implements IUnit {
     }
   }
 
+    @Override
+    public void healedByStaff(IUnit unit) {
+    }
+
+    ;
+
+    @Override
+    public void healing(IUnit friend) {
+        this.healedByStaff(friend);
+    }
+
   @Override
   public void attackedBy(IEquipableItem equippedItem) {
     int damage;
-    if (this.isAgressive()) {
-      damage = equippedItem.fightAgainst(this.getEquippedItem());
-    } else {
+      if (this.getEquippedItem() != null) {
+          damage = equippedItem.fightAgainst(this.getEquippedItem());
+      } else {
       damage = equippedItem.getPower();
     }
     int health = this.getCurrentHitPoints();

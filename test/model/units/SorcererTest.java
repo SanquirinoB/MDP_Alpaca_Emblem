@@ -53,6 +53,19 @@ public class SorcererTest extends AbstractTestUnit{
     }
 
     @Override
+    @Test
+    public void testEquipItem() {
+        sorcerer.equipItem(axe);
+        assertNull(sorcerer.getEquippedItem());
+        sorcerer.equipItem(darkBook);
+        assertEquals(darkBook, sorcerer.getEquippedItem());
+        sorcerer.equipItem(soulBook);
+        assertEquals(soulBook, sorcerer.getEquippedItem());
+        sorcerer.equipItem(lightBook);
+        assertEquals(lightBook, sorcerer.getEquippedItem());
+    }
+
+    @Override
     public void testExchange() {
 
     }

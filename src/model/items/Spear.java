@@ -51,10 +51,7 @@ public class Spear extends AbstractItem {
   public int attackedByBow(IEquipableItem bow) { return bow.getPower();}
 
   @Override
-  public int healedByStaff(IEquipableItem staff) { return -staff.getPower();}
-
-    @Override
-    public void eqquipedByHero(Hero hero) {
+  public void eqquipedByHero(Hero hero) {
         hero.setEquippedItem(this);
     }
 

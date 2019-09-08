@@ -51,5 +51,15 @@ public class ClericTest extends AbstractTestUnit {
   }
 
   @Override
-  public void testExchange(){}
+  @Test
+  public void testEquipItem() {
+      cleric.equipItem(axe);
+      assertNull(cleric.getEquippedItem());
+      cleric.equipItem(staff);
+      assertEquals(staff, cleric.getEquippedItem());
+  }
+
+    @Override
+    @Test
+    public void testExchange(){}
 }

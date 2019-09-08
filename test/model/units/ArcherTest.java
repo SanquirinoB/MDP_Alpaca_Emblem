@@ -64,6 +64,15 @@ public class ArcherTest extends AbstractTestUnit {
     assertEquals(m_health, murder.getCurrentHitPoints());
   }
 
+    @Override
+    @Test
+    public void testEquipItem() {
+        archer.equipItem(axe);
+        assertNull(archer.getEquippedItem());
+        archer.equipItem(bow);
+        assertEquals(bow, archer.getEquippedItem());
+    }
+
   @Override
   @Test
   public void testExchange() {

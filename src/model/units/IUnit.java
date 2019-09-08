@@ -87,4 +87,9 @@ public interface IUnit {
   boolean exchangeViable(IUnit giver, IUnit receiver);
 
   void exchangeTo(IUnit unit, int item);
+
+    void healedByStaff(IUnit unit);
+
+    void healing(IUnit unit);
+
 }

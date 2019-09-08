@@ -30,7 +30,7 @@ public class AlpacaTest extends AbstractTestUnit{
   public void testAttack(){
     IUnit murder = new Archer(50, 2, field.getCell(1,2));
     IUnit victim = new Alpaca(50, 2, field.getCell(0,0));
-    murder.setEquippedItem(getBow());
+      murder.equipItem(getBow());
     int m_health = murder.getCurrentHitPoints();
     int v_health = victim.getCurrentHitPoints();
     murder.attack(victim);
@@ -50,5 +50,11 @@ public class AlpacaTest extends AbstractTestUnit{
   }
 
 
+    @Override
+    @Test
+    public void testEquipItem() {
+        alpaca.equipItem(axe);
+        assertNull(alpaca.getEquippedItem());
+    }
 }
 

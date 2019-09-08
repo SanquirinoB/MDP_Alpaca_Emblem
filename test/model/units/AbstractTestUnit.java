@@ -253,11 +253,20 @@ public abstract class AbstractTestUnit implements ITestUnit {
     assertFalse(targetAlpaca.attackViable(other));
   }
 
-
   @Override
   public abstract void testAttack();
 
+    @Override
+    public abstract void testEquipItem();
 
-
+    @Override
+    @Test
+    public void testHealing() {
+        int health = getTestUnit().getCurrentHitPoints();
+        IUnit healer = new Cleric(50, 2, field.getCell(0, 1));
+        healer.equipItem(staff);
+        healer.healing(getTestUnit());
+        assertEquals(health + staff.getPower(), getTestUnit().getCurrentHitPoints());
+    }
 
 }

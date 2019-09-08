@@ -140,9 +140,6 @@ public abstract class AbstractItem implements IEquipableItem {
   public abstract int attackedByBow(IEquipableItem bow);
 
   @Override
-  public abstract int healedByStaff(IEquipableItem staff);
-
-  @Override
   public void eqquipedByArcher(Archer archer) {}
 
   @Override

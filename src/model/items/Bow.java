@@ -68,8 +68,6 @@ public class Bow extends AbstractItem {
   @Override
   public int attackedByBow(IEquipableItem bow) { return bow.getPower();}
 
-  @Override
-  public int healedByStaff(IEquipableItem staff) { return -staff.getPower();}
 
     @Override
     public void eqquipedByArcher(Archer archer) {

@@ -56,9 +56,6 @@ public class LightBook extends AbstractBook{
     public int attackedByBow(IEquipableItem bow) { return powerful(bow);}
 
     @Override
-    public int healedByStaff(IEquipableItem staff) { return -staff.getPower();}
-
-    @Override
     public void eqquipedBySorcerer(Sorcerer sorcerer) {
         sorcerer.setEquippedItem(this);
     }
