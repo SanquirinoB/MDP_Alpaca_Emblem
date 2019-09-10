@@ -146,4 +146,10 @@ public interface ITestUnit {
     @Test
     void testHealing();
 
+    @Test
+    void testAddItem();
+
+    @Test
+    void testQuitItem();
+
 }

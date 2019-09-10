@@ -66,6 +66,4 @@ public class HeroTest extends AbstractTestUnit {
 
     }
 
-  @Override
-  public void testExchange(){}
 }

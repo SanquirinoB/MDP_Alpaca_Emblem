@@ -59,7 +59,4 @@ public class ClericTest extends AbstractTestUnit {
       assertEquals(staff, cleric.getEquippedItem());
   }
 
-    @Override
-    @Test
-    public void testExchange(){}
 }

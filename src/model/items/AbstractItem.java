@@ -140,22 +140,28 @@ public abstract class AbstractItem implements IEquipableItem {
   public abstract int attackedByBow(IEquipableItem bow);
 
   @Override
-  public void eqquipedByArcher(Archer archer) {}
+  public void equippedByArcher(Archer archer) {
+  }
 
   @Override
-  public void eqquipedByCleric(Cleric cleric) {}
+  public void equippedByCleric(Cleric cleric) {
+  }
 
   @Override
-  public void eqquipedByFighter(Fighter fighter) {}
+  public void equippedByFighter(Fighter fighter) {
+  }
 
   @Override
-  public void eqquipedByHero(Hero hero) {}
+  public void equippedByHero(Hero hero) {
+  }
 
   @Override
-  public void eqquipedBySorcerer(Sorcerer sorcerer) {}
+  public void equippedBySorcerer(Sorcerer sorcerer) {
+  }
 
   @Override
-  public void eqquipedBySwordMaster(SwordMaster swordMaster) {}
+  public void equippedBySwordMaster(SwordMaster swordMaster) {
+  }
 
 
 }

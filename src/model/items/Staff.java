@@ -9,6 +9,11 @@ import model.units.Cleric;
  *
  * @author Ignacio Slater Muñoz
  * @since 1.0
+ *
+ * NEW ACTUALIZATION
+ * New Methods for fighting
+ * @author Fernanda Sanchirico
+ * @since 2.0
  */
 public class Staff extends AbstractItem {
 
@@ -23,6 +28,8 @@ public class Staff extends AbstractItem {
    *     the minimum range of the staff
    * @param maxRange
    *     the maximum range of the staff
+   *
+   *     By default, this item is healer
    */
   public Staff(final String name, final int power, final int minRange, final int maxRange) {
     super(name, power, minRange, maxRange, true);
@@ -56,7 +63,7 @@ public class Staff extends AbstractItem {
   public int attackedByBow(IEquipableItem bow) {return bow.getPower();}
 
   @Override
-  public void eqquipedByCleric(Cleric cleric) {
+  public void equippedByCleric(Cleric cleric) {
         cleric.setEquippedItem(this);
     }
 

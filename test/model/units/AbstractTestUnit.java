@@ -243,7 +243,6 @@ public abstract class AbstractTestUnit implements ITestUnit {
     return ex;
   }
 
-
   @Override
   @Test
   public void testAttackViable() {
@@ -256,12 +255,51 @@ public abstract class AbstractTestUnit implements ITestUnit {
   @Override
   public abstract void testAttack();
 
-    @Override
-    public abstract void testEquipItem();
+  @Override
+  public abstract void testEquipItem();
 
-    @Override
-    @Test
-    public void testHealing() {
+  @Override
+  @Test
+  public void testAddItem() {
+    IUnit unit = getTestUnit();
+    assertTrue(unit.getItems().isEmpty());
+    unit.addItem(getSoulBook());
+    assertEquals(getSoulBook(), unit.getItems().get(0));
+  }
+
+  @Override
+  @Test
+  public void testQuitItem() {
+    IUnit unit = getTestUnit();
+    assertTrue(unit.getItems().isEmpty());
+    unit.addItem(getSoulBook());
+    assertEquals(getSoulBook(), unit.getItems().get(0));
+    unit.quitItem(0);
+    assertTrue(unit.getItems().isEmpty());
+  }
+
+  @Override
+  @Test
+  public void testExchange() {
+    // Giving: Everyone can give.
+    IUnit giver = getTestUnit();
+    IUnit receiver = new Alpaca(50, 2, field.getCell(1, 0));
+    assertTrue(giver.getItems().isEmpty());
+    giver.addItem(getSoulBook());
+    giver.exchangeTo(receiver, 0);
+    assertTrue(giver.getItems().isEmpty());
+    assertEquals(getSoulBook(), receiver.getItems().get(0));
+    // Receiving: Everyone can receive.
+    giver = receiver;
+    receiver = getTestUnit();
+    giver.exchangeTo(receiver, 0);
+    assertTrue(giver.getItems().isEmpty());
+    assertEquals(getSoulBook(), receiver.getItems().get(0));
+  }
+
+  @Override
+  @Test
+  public void testHealing() {
         int health = getTestUnit().getCurrentHitPoints();
         IUnit healer = new Cleric(50, 2, field.getCell(0, 1));
         healer.equipItem(staff);

@@ -11,6 +11,11 @@ import model.map.Location;
  *
  * @author Ignacio Slater Muñoz
  * @since 1.0
+ *
+ * NEW ACTUALIZATION
+ * Nothing new...
+ * @author Fernanda Sanchirico
+ * @since 2.0
  */
 public class Alpaca extends AbstractUnit {
 
@@ -23,6 +28,8 @@ public class Alpaca extends AbstractUnit {
    *     number of cells the unit can move
    * @param location
    *     current position of the unit
+   *
+   *     By default, this unit isn't agressive
    */
   Alpaca(int hitPoints, final int movement, Location location,
          IEquipableItem... items) {

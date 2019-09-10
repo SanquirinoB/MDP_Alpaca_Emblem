@@ -10,9 +10,21 @@ import model.map.Location;
  *
  * @author Ignacio Slater Muñoz
  * @since 1.0
+ *
+ * NEW ACTUALIZATION
+ * New Method for equip an item with DD
+ * @author Fernanda Sanchirico
+ * @since 2.0
  */
 public class SwordMaster extends AbstractUnit {
-
+  /**
+   * Creates a new Unit.
+   *
+   * @param hitPoints the maximum amount of damage a unit can sustain
+   * @param movement  the number of panels a unit can move
+   * @param location  the current position of this unit on the map
+   * @param items     By default, this unit is agressive
+   */
   public SwordMaster( int hitPoints,  int movement,  Location location,
       IEquipableItem... items) {
     super(hitPoints, movement, location, 3, true, items);
@@ -26,6 +38,6 @@ public class SwordMaster extends AbstractUnit {
    */
   @Override
   public void equipItem( IEquipableItem item) {
-    item.eqquipedBySwordMaster(this);
+    item.equippedBySwordMaster(this);
   }
 }

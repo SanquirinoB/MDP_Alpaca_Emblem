@@ -10,6 +10,11 @@ import model.units.SwordMaster;
  *
  * @author Ignacio Slater Muñoz
  * @since 1.0
+ *
+ * NEW ACTUALIZATION
+ * New Methods for fighting
+ * @author Fernanda Sanchirico
+ * @since 2.0
  */
 public class Sword extends AbstractItem {
 
@@ -24,6 +29,8 @@ public class Sword extends AbstractItem {
    *     the minimum range of the weapon
    * @param maxRange
    *     the maximum range of the weapon
+   *
+   *     By default, this item is agressive
    */
   public Sword(final String name, final int power, final int minRange, final int maxRange) {
     super(name, power, minRange, maxRange, false);
@@ -60,6 +67,8 @@ public class Sword extends AbstractItem {
   public int attackedByBow(IEquipableItem bow) {return bow.getPower();}
 
   @Override
-  public void eqquipedBySwordMaster(SwordMaster swordMaster) { swordMaster.setEquippedItem(this); }
+  public void equippedBySwordMaster(SwordMaster swordMaster) {
+    swordMaster.setEquippedItem(this);
+  }
 
 }

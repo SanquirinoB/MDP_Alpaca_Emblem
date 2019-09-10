@@ -68,6 +68,4 @@ public class FighterTest extends AbstractTestUnit {
         assertEquals(axe, fighter.getEquippedItem());
     }
 
-  @Override
-  public void testExchange(){}
 }

@@ -1,7 +1,6 @@
 package model.units;
 
 import model.items.IEquipableItem;
-import model.items.Spear;
 import model.map.Location;
 
 /**
@@ -11,6 +10,11 @@ import model.map.Location;
  *
  * @author Ignacio Slater Muñoz
  * @since 1.0
+ *
+ * NEW ACTUALIZATION
+ * New Method for equip an item with DD
+ * @author Fernanda Sanchirico
+ * @since 2.0
  */
 public class Hero extends AbstractUnit {
 
@@ -35,6 +39,6 @@ public class Hero extends AbstractUnit {
    */
   @Override
   public void equipItem(final IEquipableItem item) {
-    item.eqquipedByHero(this);
+    item.equippedByHero(this);
   }
 }

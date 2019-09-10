@@ -1,10 +1,15 @@
 package model.units;
 
-import model.items.AbstractBook;
 import model.items.IEquipableItem;
 import model.map.Location;
 
-import java.awt.print.Book;
+/**
+ * NEW ACTUALIZATION
+ * New subclass of IUnit, with method for equip an item with DD
+ *
+ * @author Fernanda Sanchirico
+ * @since 2.0
+ */
 
 public class Sorcerer extends AbstractUnit{
     /**
@@ -15,6 +20,8 @@ public class Sorcerer extends AbstractUnit{
      * @param location  the current position of this unit on the map
      * @param maxItems  maximum amount of items this unit can carry
      * @param items
+     *
+     * By default, this unit is agressive
      */
     public Sorcerer(int hitPoints, int movement, Location location, int maxItems, IEquipableItem... items) {
         super(hitPoints, movement, location, maxItems, true, items);
@@ -22,6 +29,6 @@ public class Sorcerer extends AbstractUnit{
 
     @Override
     public void equipItem(IEquipableItem item) {
-        item.eqquipedBySorcerer(this);
+        item.equippedBySorcerer(this);
     }
 }

@@ -2,9 +2,17 @@ package model.items;
 
 import model.units.Sorcerer;
 
+/**
+ * NEW ACTUALIZATION
+ * New Class of item, new Methods for fighting
+ *
+ * @author Fernanda Sanchirico
+ * @since 2.0
+ */
+
 public class SoulBook extends AbstractBook {
     /**
-     * Constructor for a default item without any special behaviour.
+     * Constructor for make a SoulBook
      * We define the magicID as:
      * 1-> soulBook
      * 2-> darkBook
@@ -56,7 +64,7 @@ public class SoulBook extends AbstractBook {
     public int attackedByBow(IEquipableItem bow) { return powerful(bow);}
 
     @Override
-    public void eqquipedBySorcerer(Sorcerer sorcerer) {
+    public void equippedBySorcerer(Sorcerer sorcerer) {
         sorcerer.setEquippedItem(this);
     }
 }

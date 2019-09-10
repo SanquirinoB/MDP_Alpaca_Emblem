@@ -39,7 +39,7 @@ public class AlpacaTest extends AbstractTestUnit{
   }
 
 
-  @Override
+/*  @Override
   @Test
   public void testExchange() {
     IUnit alpaca = new Alpaca(50, 2, field.getCell(0,0), getAxe());
@@ -47,7 +47,7 @@ public class AlpacaTest extends AbstractTestUnit{
     alpaca.exchangeTo(other,0);
     assertEquals(getAxe(), other.getItems().get(0));
     assertTrue(alpaca.getItems().isEmpty());
-  }
+  }*/
 
 
     @Override

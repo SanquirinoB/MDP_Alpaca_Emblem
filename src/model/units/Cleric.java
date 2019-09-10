@@ -1,7 +1,6 @@
 package model.units;
 
 import model.items.IEquipableItem;
-import model.items.Staff;
 import model.map.Location;
 
 /**
@@ -10,6 +9,11 @@ import model.map.Location;
  *
  * @author Ignacio Slater Muñoz
  * @since 1.0
+ *
+ * NEW ACTUALIZATION
+ * New Method for equip an item with DD and healing
+ * @author Fernanda Sanchirico
+ * @since 2.0
  */
 public class Cleric extends AbstractUnit {
 
@@ -34,13 +38,14 @@ public class Cleric extends AbstractUnit {
    */
   @Override
   public void equipItem(final IEquipableItem item) {
-    item.eqquipedByCleric(this);
+      item.equippedByCleric(this);
   }
 
     @Override
     public void healedByStaff(IUnit friend) {
         if (this.getEquippedItem() != null) {
-            friend.setCurrentHitPoints(friend.getCurrentHitPoints() + this.getEquippedItem().getPower());
+            int amountOfHeal = Math.max(50, friend.getCurrentHitPoints() + this.getEquippedItem().getPower());
+            friend.setCurrentHitPoints(amountOfHeal);
         }
     }
 }

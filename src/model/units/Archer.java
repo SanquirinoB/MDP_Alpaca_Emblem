@@ -1,6 +1,5 @@
 package model.units;
 
-import model.items.Bow;
 import model.items.IEquipableItem;
 import model.map.Location;
 
@@ -11,6 +10,11 @@ import model.map.Location;
  *
  * @author Ignacio Slater Muñoz
  * @since 1.0
+ *
+ * NEW ACTUALIZATION
+ * New Method for equip an item with DD
+ * @author Fernanda Sanchirico
+ * @since 2.0
  */
 public class Archer extends AbstractUnit {
 
@@ -25,6 +29,8 @@ public class Archer extends AbstractUnit {
    *     the initial position of this unit
    * @param items
    *     the items carried by this unit
+   *
+   *     By default, this unit is agressive
    */
   public Archer( int hitPoints,  int movement,  Location position,
        IEquipableItem... items) {
@@ -41,6 +47,6 @@ public class Archer extends AbstractUnit {
    */
   @Override
   public void equipItem(IEquipableItem item) {
-    item.eqquipedByArcher(this);
+    item.equippedByArcher(this);
   }
 }

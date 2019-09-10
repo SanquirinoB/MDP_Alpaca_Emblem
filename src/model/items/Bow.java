@@ -4,7 +4,12 @@ import model.units.Archer;
 
 /**
  * @author Ignacio Slater Muñoz
- * @since
+ * @since 1.0
+ *
+ * NEW ACTUALIZATION
+ * New Methods for fighting
+ * @author Fernanda Sanchirico
+ * @since 2.0
  */
 public class Bow extends AbstractItem {
 
@@ -22,6 +27,7 @@ public class Bow extends AbstractItem {
    *     the minimum range of the bow
    * @param maxRange
    *     the maximum range of the bow
+   *  By default, a Bow is an agressive item
    */
   public Bow(final String name, final int power, final int minRange, final int maxRange) {
     super(name, power, minRange, maxRange, false);
@@ -68,10 +74,9 @@ public class Bow extends AbstractItem {
   @Override
   public int attackedByBow(IEquipableItem bow) { return bow.getPower();}
 
-
-    @Override
-    public void eqquipedByArcher(Archer archer) {
-        archer.setEquippedItem(this);
-    }
+  @Override
+  public void equippedByArcher(Archer archer) {
+    archer.setEquippedItem(this);
+  }
 
 }

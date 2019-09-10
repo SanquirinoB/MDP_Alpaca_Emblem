@@ -9,6 +9,11 @@ import model.units.Hero;
  *
  * @author Ignacio Slater Muñoz
  * @since 1.0
+ *
+ * NEW ACTUALIZATION
+ * New Methods for fighting
+ * @author Fernanda Sanchirico
+ * @since 2.0
  */
 public class Spear extends AbstractItem {
 
@@ -19,6 +24,7 @@ public class Spear extends AbstractItem {
    * @param power    the damage of the axe
    * @param minRange the minimum range of the axe
    * @param maxRange the maximum range of the axe
+   *                 By default, this item is agressive
    */
   public Spear(final String name, final int power, final int minRange, final int maxRange) {
     super(name, power, minRange, maxRange, false);
@@ -51,7 +57,7 @@ public class Spear extends AbstractItem {
   public int attackedByBow(IEquipableItem bow) { return bow.getPower();}
 
   @Override
-  public void eqquipedByHero(Hero hero) {
+  public void equippedByHero(Hero hero) {
         hero.setEquippedItem(this);
     }
 

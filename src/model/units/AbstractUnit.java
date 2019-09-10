@@ -19,7 +19,14 @@ import model.map.Location;
  *
  * @author Ignacio Slater Muñoz
  * @since 1.0
+ *
+ * NEW ACTUALIZATION
+ *
+ * We have a lot of new methods
+ * @author Fernanda Sanchirico Barrera
+ * @since 2.0
  */
+
 public abstract class AbstractUnit implements IUnit {
 
   protected List<IEquipableItem> items = new ArrayList<>();
@@ -48,46 +55,92 @@ public abstract class AbstractUnit implements IUnit {
     this.maxItems = maxItems;
   }
 
+  /**
+   * @return the hitPoints of the unit
+   */
   @Override
   public int getCurrentHitPoints() {
     return currentHitPoints;
   }
 
+
+  /**
+   * Setter of hitPoints
+   * @param i the new hitPoints
+   */
   @Override
   public void setCurrentHitPoints(int i) {
     this.currentHitPoints = i;
   }
 
+
+  /**
+   * @return the list of items of the unit
+   */
   @Override
   public List<IEquipableItem> getItems() {
     return items;
   }
 
+
+  /**
+   * We set a new list of items to the unit
+   *
+   * @param list the new list of items
+   */
+  @Override
+  public void setItems(List<IEquipableItem> list) {
+    this.items = list;
+  }
+
+
+  /**
+   * @return the equippedItem of the unit
+   */
   @Override
   public IEquipableItem getEquippedItem() {
     return equippedItem;
   }
 
+
+  /**
+   * We set a new item
+   * @param item the item to be equipped
+   */
   @Override
   public void setEquippedItem(final IEquipableItem item) {
     this.equippedItem = item;
   }
 
+  /**
+   * @return the location of the unit
+   */
   @Override
   public Location getLocation() {
     return location;
   }
 
+  /**
+   * We set a new location for the unit
+   * @param location the new location for the unit.
+   */
   @Override
   public void setLocation(Location location) {
     this.location = location;
   }
 
+  /**
+   * @return the movement that the unit can do
+   */
   @Override
   public int getMovement() {
     return movement;
   }
 
+  /**
+   * The unit moves from his location to the new location.
+   * @param targetLocation the final location.
+   */
   @Override
   public void moveTo(final Location targetLocation) {
     if (getLocation().distanceTo(targetLocation) <= getMovement()
@@ -96,6 +149,10 @@ public abstract class AbstractUnit implements IUnit {
     }
   }
 
+  /**
+   * @param enemy the unit that is going to be attacked
+   * @return if the units can start an attack.
+   */
   @Override
   public boolean attackViable(IUnit enemy) {
     if (((this.getEquippedItem() != null) && (!this.getEquippedItem().isHealer())) && (this.isAgressive())) {
@@ -113,11 +170,18 @@ public abstract class AbstractUnit implements IUnit {
 
   }
 
+  /**
+   * @return if a unit can make an attack or not.
+   */
   @Override
   public boolean isAgressive() {
     return agressive;
   }
 
+  /**
+   * Fight method
+   * @param enemy the unit who is going to be attacked
+   */
   @Override
   public void attack(IUnit enemy) {
     if (this.attackViable(enemy)) {
@@ -126,29 +190,41 @@ public abstract class AbstractUnit implements IUnit {
     }
   }
 
-    @Override
-    public void healedByStaff(IUnit unit) {
-    }
+  /**
+   * @param unit the unit who is going to be healed by a Cleric with an Staff
+   */
+  @Override
+  public void healedByStaff(IUnit unit) {
+  }
 
-    ;
+  /**
+   * @param friend some unit that is going to be healed (DD)
+   */
+  @Override
+  public void healing(IUnit friend) {
+    this.healedByStaff(friend);
+  }
 
-    @Override
-    public void healing(IUnit friend) {
-        this.healedByStaff(friend);
-    }
-
+  /**
+   * An announcement of war
+   * @param equippedItem the item who attacks to this unit
+   */
   @Override
   public void attackedBy(IEquipableItem equippedItem) {
     int damage;
-      if (this.getEquippedItem() != null) {
-          damage = equippedItem.fightAgainst(this.getEquippedItem());
-      } else {
+    if (this.getEquippedItem() != null) {
+      damage = equippedItem.fightAgainst(this.getEquippedItem());
+    } else {
       damage = equippedItem.getPower();
     }
     int health = this.getCurrentHitPoints();
     this.setCurrentHitPoints(health - damage);
   }
 
+  /**
+   * An answer to the initial attack
+   * @param enemy the unit who started the war
+   */
   @Override
   public void attackBack(AbstractUnit enemy) {
     if (this.isAgressive()) {
@@ -160,28 +236,64 @@ public abstract class AbstractUnit implements IUnit {
     }
   }
 
+  /**
+   * @return the maximal amount of items that a unit can handle
+   */
   @Override
   public int getMaxItems() {
     return maxItems;
   }
 
+  /**
+   * @param giver unit that gives an item
+   * @param receiver who receives the item
+   * @return if the exchange between those units is viable
+   */
   @Override
   public boolean exchangeViable(IUnit giver, IUnit receiver) {
-      // Conditions
-      boolean theyAreClose = giver.getLocation().distanceTo(receiver.getLocation()) <= 1;
-      boolean theGiverHaveSome = !giver.getItems().isEmpty();
-      boolean theReceiverHaveSpc = receiver.getItems().size() < receiver.getMaxItems();
-      if (theyAreClose && theGiverHaveSome && theReceiverHaveSpc) {
-        return true;
-      } else return false;
+    // Conditions
+    boolean theyAreClose = giver.getLocation().distanceTo(receiver.getLocation()) <= 1;
+    boolean theGiverHaveSome = !giver.getItems().isEmpty();
+    boolean theReceiverHaveSpc = receiver.getItems().size() < receiver.getMaxItems();
+    if (theyAreClose && theGiverHaveSome && theReceiverHaveSpc) {
+      return true;
+    } else return false;
   }
 
+  /**
+   * It delete the i-th item of the unit's item list
+   *
+   * @param index the index of the item in the unit's list that we want to delete
+   */
+  @Override
+  public void quitItem(int index) {
+    List<IEquipableItem> items = this.getItems();
+    items.remove(index);
+    this.setItems(items);
+  }
+
+  /**
+   * It add a new item to the unit's item list
+   *
+   * @param item the item that is going to be added to the unit's item list
+   */
+  @Override
+  public void addItem(IEquipableItem item) {
+    List<IEquipableItem> items = this.getItems();
+    items.add(item);
+    this.setItems(items);
+  }
+
+  /**
+   * @param unit who receive the item
+   * @param index the index of the item in the unit's list  that we want to give
+   */
   @Override
   public void exchangeTo(IUnit unit, int index) {
     if (exchangeViable(this, unit)) {
       IEquipableItem item = this.getItems().get(index);
-      unit.getItems().add(item);
-      this.getItems().remove(item);
+      unit.addItem(item);
+      this.quitItem(index);
     } else System.out.println("You can't do it");
   }
 

@@ -39,6 +39,7 @@ public interface IUnit {
    */
   List<IEquipableItem> getItems();
 
+  void setItems(List<IEquipableItem> list);
   /**
    * @return the currently equipped item
    */
@@ -72,24 +73,75 @@ public interface IUnit {
    */
   void moveTo(Location targetLocation);
 
+  /**
+   * @param enemy the unit that is going to be attacked
+   * @return if the units can start an attack.
+   */
   boolean attackViable(IUnit enemy);
 
+  /**
+   * @return if a unit can make an attack or not.
+   */
   boolean isAgressive();
 
+  /**
+   * Fight method
+   * @param enemy the unit who is going to be attacked
+   */
   void attack(IUnit enemy);
 
+  /**
+   * An announcement of war
+   * @param equippedItem the item who attacks to this unit
+   */
   void attackedBy(IEquipableItem equippedItem);
 
+  /**
+   * An answer to the initial attack
+   * @param abstractUnit the unit who started the war
+   */
   void attackBack(AbstractUnit abstractUnit);
 
+  /**
+   * @return the maximal amount of items that a unit can handle
+   */
   int getMaxItems();
 
+  /**
+   * @param giver unit that gives an item
+   * @param receiver who receives the item
+   * @return if the exchange between those units is viable
+   */
   boolean exchangeViable(IUnit giver, IUnit receiver);
 
-  void exchangeTo(IUnit unit, int item);
+  /**
+   * @param unit  who receive the item
+   * @param index the index of the item in the unit's list  that we want to give
+   */
+  void exchangeTo(IUnit unit, int index);
 
-    void healedByStaff(IUnit unit);
+  /**
+   * @param unit the unit who is going to be healed by a Cleric with an Staff
+   */
+  void healedByStaff(IUnit unit);
 
-    void healing(IUnit unit);
+  /**
+   * @param unit some unit that is going to be healed (DD)
+   */
+  void healing(IUnit unit);
+
+  /**
+   * It delete the i-th item of the unit's item list
+   *
+   * @param index the index of the item in the unit's list that we want to delete
+   */
+  void quitItem(int index);
+
+  /**
+   * It add a new item to the unit's item list
+   *
+   * @param item the item that is going to be added to the unit's item list
+   */
+  void addItem(IEquipableItem item);
 
 }

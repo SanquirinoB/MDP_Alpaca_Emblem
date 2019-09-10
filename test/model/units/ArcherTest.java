@@ -73,7 +73,7 @@ public class ArcherTest extends AbstractTestUnit {
         assertEquals(bow, archer.getEquippedItem());
     }
 
-  @Override
+/*  @Override
   @Test
   public void testExchange() {
     IUnit alpaca = new Alpaca(50, 2, field.getCell(0, 0), getAxe(), getStaff());
@@ -85,7 +85,7 @@ public class ArcherTest extends AbstractTestUnit {
     // It should say "You cant do it"
     assertEquals(list, archer.getItems());
 
-  }
+  }*/
 
 }
 
