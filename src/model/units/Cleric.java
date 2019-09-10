@@ -43,8 +43,8 @@ public class Cleric extends AbstractUnit {
 
     @Override
     public void healedByStaff(IUnit friend) {
-        if (this.getEquippedItem() != null) {
-            int amountOfHeal = Math.max(50, friend.getCurrentHitPoints() + this.getEquippedItem().getPower());
+        if (this.getEquippedItem() != null && friend.getCurrentHitPoints() > 0) {
+            int amountOfHeal = Math.min(50, friend.getCurrentHitPoints() + this.getEquippedItem().getPower());
             friend.setCurrentHitPoints(amountOfHeal);
         }
     }

@@ -300,11 +300,18 @@ public abstract class AbstractTestUnit implements ITestUnit {
   @Override
   @Test
   public void testHealing() {
+    getTestUnit().setCurrentHitPoints(10);
         int health = getTestUnit().getCurrentHitPoints();
         IUnit healer = new Cleric(50, 2, field.getCell(0, 1));
         healer.equipItem(staff);
         healer.healing(getTestUnit());
         assertEquals(health + staff.getPower(), getTestUnit().getCurrentHitPoints());
+    getTestUnit().setCurrentHitPoints(0);
+    healer.healing(getTestUnit());
+    assertEquals(0, getTestUnit().getCurrentHitPoints());
+    getTestUnit().setCurrentHitPoints(50);
+    healer.healing(getTestUnit());
+    assertEquals(50, getTestUnit().getCurrentHitPoints());
     }
 
 }

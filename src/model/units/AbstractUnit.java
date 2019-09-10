@@ -155,7 +155,8 @@ public abstract class AbstractUnit implements IUnit {
    */
   @Override
   public boolean attackViable(IUnit enemy) {
-    if (((this.getEquippedItem() != null) && (!this.getEquippedItem().isHealer())) && (this.isAgressive())) {
+      boolean allAlive = this.getCurrentHitPoints() > 0 && enemy.getCurrentHitPoints() > 0;
+      if (((this.getEquippedItem() != null) && (!this.getEquippedItem().isHealer())) && this.isAgressive() && allAlive) {
       int min_i = this.getEquippedItem().getMinRange();
       int max_i = this.getEquippedItem().getMaxRange();
       double dist = this.getLocation().distanceTo(enemy.getLocation());
@@ -218,7 +219,7 @@ public abstract class AbstractUnit implements IUnit {
       damage = equippedItem.getPower();
     }
     int health = this.getCurrentHitPoints();
-    this.setCurrentHitPoints(health - damage);
+      this.setCurrentHitPoints(Math.max(0, health - damage));
   }
 
   /**
@@ -231,7 +232,7 @@ public abstract class AbstractUnit implements IUnit {
       if (this.attackViable(enemy)) {
         int damage = this.getEquippedItem().fightAgainst(enemy.getEquippedItem());
         int health = enemy.getCurrentHitPoints();
-        enemy.setCurrentHitPoints(health - damage);
+          enemy.setCurrentHitPoints(Math.max(0, health - damage));
       }
     }
   }

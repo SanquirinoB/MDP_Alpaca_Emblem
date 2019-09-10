@@ -48,7 +48,7 @@ public class SorcererTest extends AbstractTestUnit {
         assertEquals(victimNonHealth - darkBook.getPower() * 3 / 2, victim_nonMag.getCurrentHitPoints());
         murderHealth = murder.getCurrentHitPoints();
         murder.attack(victim_Mag);
-        assertEquals(murderHealth - lightBook.getPower() * 3 / 2, murder.getCurrentHitPoints());
+        assertEquals(0, murder.getCurrentHitPoints());
         assertEquals(victimMagHealth - (darkBook.getPower() - 20), victim_Mag.getCurrentHitPoints());
     }
 
