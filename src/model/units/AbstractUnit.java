@@ -298,5 +298,4 @@ public abstract class AbstractUnit implements IUnit {
     } else System.out.println("You can't do it");
   }
 
-
 }
