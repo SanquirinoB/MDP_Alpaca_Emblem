@@ -38,7 +38,7 @@ Por ejemplo, necesitamos diferenciar el hecho de que una unidad ataque con un ha
 
 1. **Alpaca**: No posee límite de items a cargar, pero no puede equipar items, por lo que (lamentablemente) puede recibir ataques y no contra atacar (Ojalá implementar un escupitajo de respuesta) pero también puede ser sanada por el Cleric con su Staff (item curador).
 
-> A continuación, las siguientes unidades poseen un límite de 3 items para llevar consigo y poder equipar solo uno de ellos. Entiéndase por equipar un item como la acción de seleccionar un item con el que se pueden realizar acciones. Se asume que una unidad no puede atacar bajo las siguientes condiciones: cuando se encuentra fuera de rango de su item, no posee item equipado, hitPoints iguales a 0 (se da por muerto) o bien no es una unidad con la capacidad de atacar (Alpaca/Cleric). Hasta ahora los hitPoints máximos que se pueden tener son 50. Todas las fortalezas y debilidades se declaran en el [enunciado]( ajdunto.
+> A continuación, las siguientes unidades poseen un límite de 3 items para llevar consigo y poder equipar solo uno de ellos. Entiéndase por equipar un item como la acción de seleccionar un item con el que se pueden realizar acciones. Se asume que una unidad no puede atacar bajo las siguientes condiciones: cuando se encuentra fuera de rango de su item, no posee item equipado, hitPoints iguales a 0 (se da por muerto) o bien no es una unidad con la capacidad de atacar (Alpaca/Cleric). Hasta ahora los hitPoints máximos que se pueden tener son 50. Todas las fortalezas y debilidades se declaran en el [enunciado](https://github.com/SanquirinoB/MDP_Alpaca_Emblem/blob/master/Protecto_Parte_1.pdf) ajdunto.
 
 2. **Archer**: Item equipable arco (Bow), puede atacar, contra atacar y ser sanado.
 
