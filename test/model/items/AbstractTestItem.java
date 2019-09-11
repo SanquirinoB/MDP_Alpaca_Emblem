@@ -141,7 +141,6 @@ public abstract class AbstractTestItem {
     assertEquals(unit, getTestItem().getOwner());
   }
 
-
   /**
    * @return a unit that can equip the item being tested
    */

@@ -3,7 +3,10 @@ package model.units;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertNull;
 
+import model.items.DarkBook;
 import org.junit.jupiter.api.Test;
+
+import java.awt.print.Book;
 
 public class SorcererTest extends AbstractTestUnit {
     private Sorcerer sorcerer;
@@ -22,6 +25,9 @@ public class SorcererTest extends AbstractTestUnit {
     @Test
     public void equipBookTest() {
         assertNull(sorcerer.getEquippedItem());
+        sorcerer.addItem(darkBook);
+        sorcerer.addItem(lightBook);
+        sorcerer.addItem(soulBook);
         sorcerer.equipItem(darkBook);
         assertEquals(darkBook, sorcerer.getEquippedItem());
         sorcerer.equipItem(lightBook);
@@ -34,11 +40,14 @@ public class SorcererTest extends AbstractTestUnit {
     @Test
     public void testAttack() {
         IUnit murder = sorcerer;
+        murder.addItem(darkBook);
         murder.equipItem(darkBook);
         assertEquals(darkBook, murder.getEquippedItem());
         IUnit victim_nonMag = new Fighter(50, 2, field.getCell(1, 0));
+        victim_nonMag.addItem(axe);
         victim_nonMag.equipItem(axe);
         IUnit victim_Mag = new Sorcerer(50, 2, field.getCell(1, 0), 3);
+        victim_Mag.addItem(lightBook);
         victim_Mag.equipItem(lightBook);
         int murderHealth = murder.getCurrentHitPoints();
         int victimNonHealth = victim_nonMag.getCurrentHitPoints();
@@ -55,7 +64,14 @@ public class SorcererTest extends AbstractTestUnit {
     @Override
     @Test
     public void testEquipItem() {
+        sorcerer.addItem(darkBook);
+        sorcerer.addItem(lightBook);
+        sorcerer.addItem(soulBook);
+        sorcerer.addItem(axe);
+        DarkBook bookNonEquip = new DarkBook("badBook", 50, 1, 2);
         sorcerer.equipItem(axe);
+        assertNull(sorcerer.getEquippedItem());
+        sorcerer.equipItem(bookNonEquip);
         assertNull(sorcerer.getEquippedItem());
         sorcerer.equipItem(darkBook);
         assertEquals(darkBook, sorcerer.getEquippedItem());

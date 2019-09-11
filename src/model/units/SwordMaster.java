@@ -38,6 +38,8 @@ public class SwordMaster extends AbstractUnit {
    */
   @Override
   public void equipItem( IEquipableItem item) {
-    item.equippedBySwordMaster(this);
+      if (this.getItems().contains(item)) {
+          item.equippedBySwordMaster(this);
+      }
   }
 }

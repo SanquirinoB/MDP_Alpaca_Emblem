@@ -1,5 +1,6 @@
 package model.units;
 
+import model.items.Sword;
 import model.map.Location;
 import org.junit.jupiter.api.Test;
 
@@ -58,6 +59,9 @@ public class SwordMasterTest extends AbstractTestUnit {
   @Override
   @Test
   public void testEquipItem() {
+    swordMaster.addItem(darkBook);
+    swordMaster.addItem(sword);
+    Sword swordNonEquip = new Sword("badSword", 50, 1, 2);
     swordMaster.equipItem(darkBook);
     assertNull(swordMaster.getEquippedItem());
     swordMaster.equipItem(sword);

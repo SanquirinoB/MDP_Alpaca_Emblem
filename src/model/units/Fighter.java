@@ -30,6 +30,8 @@ public class Fighter extends AbstractUnit {
    */
   @Override
   public void equipItem(final IEquipableItem item) {
-    item.equippedByFighter(this);
+      if (this.getItems().contains(item)) {
+          item.equippedByFighter(this);
+      }
   }
 }

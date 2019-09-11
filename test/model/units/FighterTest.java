@@ -3,6 +3,7 @@ package model.units;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertNull;
 
+import model.items.Axe;
 import model.map.Location;
 import org.junit.jupiter.api.Test;
 
@@ -36,6 +37,7 @@ public class FighterTest extends AbstractTestUnit {
   @Override
   public void equipAxeTest() {
     assertNull(fighter.getEquippedItem());
+    fighter.addItem(axe);
     fighter.equipItem(axe);
     assertEquals(axe, fighter.getEquippedItem());
   }
@@ -59,13 +61,18 @@ public class FighterTest extends AbstractTestUnit {
 
   }
 
-    @Override
-    @Test
-    public void testEquipItem() {
-        fighter.equipItem(spear);
-        assertNull(fighter.getEquippedItem());
-        fighter.equipItem(axe);
-        assertEquals(axe, fighter.getEquippedItem());
-    }
+  @Override
+  @Test
+  public void testEquipItem() {
+    fighter.addItem(spear);
+    fighter.addItem(axe);
+    Axe axeNonEquip = new Axe("badAxe", 50, 1, 2);
+    fighter.equipItem(spear);
+    assertNull(fighter.getEquippedItem());
+    fighter.equipItem(axeNonEquip);
+    assertNull(fighter.getEquippedItem());
+    fighter.equipItem(axe);
+    assertEquals(axe, fighter.getEquippedItem());
+  }
 
 }

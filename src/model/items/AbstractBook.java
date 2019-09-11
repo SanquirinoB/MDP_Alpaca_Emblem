@@ -12,7 +12,7 @@ package model.items;
  */
 
 public abstract class AbstractBook extends AbstractItem{
-    private int magicID;
+    protected int magicID;
 
     /**
      * Constructor for a default book.

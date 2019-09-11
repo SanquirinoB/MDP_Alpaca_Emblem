@@ -3,6 +3,7 @@ package model.units;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertNull;
 
+import model.items.Staff;
 import model.map.Location;
 import org.junit.jupiter.api.Test;
 
@@ -33,6 +34,7 @@ public class ClericTest extends AbstractTestUnit {
   @Override
   public void equipStaffTest() {
     assertNull(cleric.getEquippedItem());
+      cleric.addItem(staff);
     cleric.equipItem(staff);
     assertEquals(staff, cleric.getEquippedItem());
   }
@@ -53,7 +55,12 @@ public class ClericTest extends AbstractTestUnit {
   @Override
   @Test
   public void testEquipItem() {
+      cleric.addItem(axe);
+      cleric.addItem(staff);
+      Staff staffNonEquip = new Staff("NotSaved", 20, 1, 2);
       cleric.equipItem(axe);
+      assertNull(cleric.getEquippedItem());
+      cleric.equipItem(staffNonEquip);
       assertNull(cleric.getEquippedItem());
       cleric.equipItem(staff);
       assertEquals(staff, cleric.getEquippedItem());

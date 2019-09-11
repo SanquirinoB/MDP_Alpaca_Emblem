@@ -1,5 +1,6 @@
 package model.units;
 
+import model.items.Bow;
 import model.items.IEquipableItem;
 import model.map.Location;
 import org.junit.jupiter.api.Test;
@@ -41,6 +42,7 @@ public class ArcherTest extends AbstractTestUnit {
   @Override
   public void equipBowTest() {
     assertNull(archer.getEquippedItem());
+    archer.addItem(bow);
     archer.equipItem(bow);
     assertEquals(bow, archer.getEquippedItem());
   }
@@ -64,28 +66,21 @@ public class ArcherTest extends AbstractTestUnit {
     assertEquals(m_health, murder.getCurrentHitPoints());
   }
 
-    @Override
-    @Test
-    public void testEquipItem() {
-        archer.equipItem(axe);
-        assertNull(archer.getEquippedItem());
-        archer.equipItem(bow);
-        assertEquals(bow, archer.getEquippedItem());
-    }
-
-/*  @Override
+  @Override
   @Test
-  public void testExchange() {
-    IUnit alpaca = new Alpaca(50, 2, field.getCell(0, 0), getAxe(), getStaff());
-    IUnit archer = new Archer(50, 2, field.getCell(0, 0), getBow(), getSpear());
-    alpaca.exchangeTo(archer, 1);
-    assertEquals(getStaff(), archer.getItems().get(2));
-    List<IEquipableItem> list = archer.getItems();
-    alpaca.exchangeTo(archer,0);
-    // It should say "You cant do it"
-    assertEquals(list, archer.getItems());
+  public void testEquipItem() {
+    archer.addItem(axe);
+    archer.addItem(bow);
+    IEquipableItem bowNonEquip = new Bow("badBow", 50, 1, 2);
+    archer.equipItem(axe);
+    assertNull(archer.getEquippedItem());
+    archer.equipItem(bowNonEquip);
+    assertNull(archer.getEquippedItem());
+    archer.equipItem(bow);
+    assertEquals(bow, archer.getEquippedItem());
+  }
 
-  }*/
+
 
 }
 

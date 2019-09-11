@@ -30,7 +30,8 @@ public class AlpacaTest extends AbstractTestUnit{
   public void testAttack(){
     IUnit murder = new Archer(50, 2, field.getCell(1,2));
     IUnit victim = new Alpaca(50, 2, field.getCell(0,0));
-      murder.equipItem(getBow());
+    murder.addItem(getBow());
+    murder.equipItem(getBow());
     int m_health = murder.getCurrentHitPoints();
     int v_health = victim.getCurrentHitPoints();
     murder.attack(victim);

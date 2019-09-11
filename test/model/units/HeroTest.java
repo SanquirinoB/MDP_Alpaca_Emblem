@@ -3,6 +3,7 @@ package model.units;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertNull;
 
+import model.items.Spear;
 import model.map.Location;
 import org.junit.jupiter.api.Test;
 
@@ -33,6 +34,7 @@ public class HeroTest extends AbstractTestUnit {
   @Test
   public void equipSpearTest() {
     assertNull(hero.getEquippedItem());
+    hero.addItem(spear);
     hero.equipItem(spear);
     assertEquals(spear, hero.getEquippedItem());
   }
@@ -56,14 +58,19 @@ public class HeroTest extends AbstractTestUnit {
     assertEquals(m_health - getAxe().getPower()*3/2, murder.getCurrentHitPoints());
   }
 
-    @Override
-    @Test
-    public void testEquipItem() {
-        hero.equipItem(axe);
-        assertNull(hero.getEquippedItem());
-        hero.equipItem(spear);
-        assertEquals(spear, hero.getEquippedItem());
+  @Override
+  @Test
+  public void testEquipItem() {
+    hero.addItem(axe);
+    hero.addItem(spear);
+    Spear spearNonEquip = new Spear("badSpear", 50, 1, 2);
+    hero.equipItem(axe);
+    assertNull(hero.getEquippedItem());
+    hero.equipItem(spearNonEquip);
+    assertNull(hero.getEquippedItem());
+    hero.equipItem(spear);
+    assertEquals(spear, hero.getEquippedItem());
 
-    }
+  }
 
 }

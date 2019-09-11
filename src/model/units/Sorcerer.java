@@ -29,6 +29,8 @@ public class Sorcerer extends AbstractUnit{
 
     @Override
     public void equipItem(IEquipableItem item) {
-        item.equippedBySorcerer(this);
+        if (this.getItems().contains(item)) {
+            item.equippedBySorcerer(this);
+        }
     }
 }
