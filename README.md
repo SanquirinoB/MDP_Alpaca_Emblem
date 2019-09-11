@@ -45,10 +45,10 @@ Por ejemplo, necesitamos diferenciar el hecho de que una unidad ataque con un ha
 
 3. **Cleric**: Item equipable Staff, item que solo tiene la capacidad de curar a otra unidad, por lo cual el clerigo solo puede recibir ataques y sanar a otros.
 
-4.**Fighter**: Item equipable hacha (Axe), puede atacar, contra atacar y ser sanado.
+4. **Fighter**: Item equipable hacha (Axe), puede atacar, contra atacar y ser sanado.
 
-5.**Hero**: Item equipable lanza (Spear), puede atacar, contra atacar y ser sanado.
+5. **Hero**: Item equipable lanza (Spear), puede atacar, contra atacar y ser sanado.
 
-6.**Sorcerer**: Item equipable libros de mágia (DarkBook/LightBook/SoulBook), puede atacar, contra atacar y ser sanado, **no tiene límite de items a cargar**.
+6. **Sorcerer**: Item equipable libros de mágia (DarkBook/LightBook/SoulBook), puede atacar, contra atacar y ser sanado, **no tiene límite de items a cargar**.
 
-7.**SwordMaster**: Item equipable espada (Sword), puede atacar, contra atacar y ser sanado.
+7. **SwordMaster**: Item equipable espada (Sword), puede atacar, contra atacar y ser sanado.
