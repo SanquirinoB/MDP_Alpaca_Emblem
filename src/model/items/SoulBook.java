@@ -24,7 +24,7 @@ public class SoulBook extends AbstractBook {
      * @param maxRange  the maximum range of the item
      */
     public SoulBook(String name, int power, int minRange, int maxRange) {
-        super(name, power, minRange, maxRange, 1);
+        super(name, power, minRange, maxRange);
     }
 
     @Override

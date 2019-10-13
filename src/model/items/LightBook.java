@@ -24,7 +24,7 @@ public class LightBook extends AbstractBook{
      * @param maxRange  the maximum range of the item
      */
     public LightBook(String name, int power, int minRange, int maxRange) {
-        super(name, power, minRange, maxRange, 3);
+        super(name, power, minRange, maxRange);
     }
 
     @Override

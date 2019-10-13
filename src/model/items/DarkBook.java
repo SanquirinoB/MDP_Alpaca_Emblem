@@ -25,7 +25,7 @@ public class DarkBook extends AbstractBook {
      *
      */
     public DarkBook(String name, int power, int minRange, int maxRange) {
-        super(name, power, minRange, maxRange, 2);
+        super(name, power, minRange, maxRange);
     }
 
     @Override

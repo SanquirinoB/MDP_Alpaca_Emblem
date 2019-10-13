@@ -17,6 +17,7 @@ public class Field {
   private Map<String, Location> map = new HashMap<>();
   private Random random = new Random();
   private StringBuilder builder = new StringBuilder();
+  private int size;
 
   /**
    * Add cells to the map.
@@ -139,5 +140,9 @@ public class Field {
    */
   public boolean checkConnection(final Location cell1, final Location cell2) {
     return cell1.isNeighbour(cell2);
+  }
+
+  public int getSize() {
+    return size;
   }
 }

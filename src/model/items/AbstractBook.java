@@ -16,20 +16,14 @@ public abstract class AbstractBook extends AbstractItem{
 
     /**
      * Constructor for a default book.
-     * We define the magicID as:
-     *  1-> soulBook
-     *  2-> darkBook
-     *  3-> lightBook
      *
      * @param name     the name of the item
      * @param power    the power of the item (this could be the amount of damage or healing the item does)
      * @param minRange the minimum range of the item
      * @param maxRange the maximum range of the item
-     * @param magicType the magicID of the book
      *   This items, by default, are agressive
      */
-    public AbstractBook(String name, int power, int minRange, int maxRange, int magicType) {
+    public AbstractBook(String name, int power, int minRange, int maxRange) {
         super(name, power, minRange, maxRange, false);
-        this.magicID = magicType;
     }
 }
