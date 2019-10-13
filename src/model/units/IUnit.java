@@ -144,4 +144,5 @@ public interface IUnit {
    */
   void addItem(IEquipableItem item);
 
+    void useItemOn(IUnit victim);
 }
