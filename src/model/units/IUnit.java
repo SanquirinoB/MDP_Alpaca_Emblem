@@ -80,11 +80,6 @@ public interface IUnit {
   boolean attackViable(IUnit enemy);
 
   /**
-   * @return if a unit can make an attack or not.
-   */
-  boolean isAgressive();
-
-  /**
    * Fight method
    * @param enemy the unit who is going to be attacked
    */

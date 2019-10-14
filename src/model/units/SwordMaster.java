@@ -16,7 +16,7 @@ import model.map.Location;
  * @author Fernanda Sanchirico
  * @since 2.0
  */
-public class SwordMaster extends AbstractUnit {
+public class SwordMaster extends AgressiveUnit {
   /**
    * Creates a new Unit.
    *
@@ -27,7 +27,7 @@ public class SwordMaster extends AbstractUnit {
    */
   public SwordMaster( int hitPoints,  int movement,  Location location,
       IEquipableItem... items) {
-    super(hitPoints, movement, location, 3, true, items);
+      super(hitPoints, movement, location, 3, items);
   }
 
   /**

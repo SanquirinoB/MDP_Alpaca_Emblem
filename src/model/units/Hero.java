@@ -16,7 +16,7 @@ import model.map.Location;
  * @author Fernanda Sanchirico
  * @since 2.0
  */
-public class Hero extends AbstractUnit {
+public class Hero extends AgressiveUnit {
 
   /**
    * Creates a new Unit.
@@ -28,7 +28,7 @@ public class Hero extends AbstractUnit {
    */
   public Hero( int hitPoints,  int movement,  Location location,
       IEquipableItem... items) {
-    super(hitPoints, movement, location, 3, true, items);
+      super(hitPoints, movement, location, 3, items);
   }
 
   /**

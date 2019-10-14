@@ -16,7 +16,7 @@ import model.map.Location;
  * @author Fernanda Sanchirico
  * @since 2.0
  */
-public class Archer extends AbstractUnit {
+public class Archer extends AgressiveUnit {
 
   /**
    * Creates a new archer
@@ -34,7 +34,7 @@ public class Archer extends AbstractUnit {
    */
   public Archer( int hitPoints,  int movement,  Location position,
        IEquipableItem... items) {
-    super(hitPoints, movement, position, 3, true, items);
+      super(hitPoints, movement, position, 3, items);
   }
 
   /**
