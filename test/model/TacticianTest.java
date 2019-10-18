@@ -62,7 +62,12 @@ public class TacticianTest {
 
     @Test
     void deleteUnit() {
+        int i = playerTest.getUnits().size();
         assertEquals(2, playerTest.getUnits().size());
+        IUnit unit = playerTest.getUnits().get(i - 1);
+        playerTest.getUnits().remove(i - 1);
+        assertEquals(i - 1, playerTest.getUnits().size());
+        assertNotEquals(unit, playerTest.getUnits().get(0));
     }
 
 
