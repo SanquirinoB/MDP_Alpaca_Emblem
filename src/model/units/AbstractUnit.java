@@ -228,13 +228,13 @@ public abstract class AbstractUnit implements IUnit {
 
   /**
    * @param unit who receive the item
-   * @param index the index of the item in the unit's list  that we want to give
+   * @param item the index of the item in the unit's list  that we want to give
    */
   @Override
-  public void exchangeTo(IUnit unit, int index) {
+  public void exchangeTo(IUnit unit, IEquipableItem item) {
     if (exchangeViable(this, unit)) {
-      IEquipableItem item = this.getItems().get(index);
       unit.addItem(item);
+        int index = this.getItems().indexOf(item);
       this.quitItem(index);
     } else System.out.println("You can't do it");
   }

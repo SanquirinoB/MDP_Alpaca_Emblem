@@ -286,13 +286,13 @@ public abstract class AbstractTestUnit implements ITestUnit {
     IUnit receiver = new Alpaca(50, 2, field.getCell(1, 0));
     assertTrue(giver.getItems().isEmpty());
     giver.addItem(getSoulBook());
-    giver.exchangeTo(receiver, 0);
+      giver.exchangeTo(receiver, getSoulBook());
     assertTrue(giver.getItems().isEmpty());
     assertEquals(getSoulBook(), receiver.getItems().get(0));
     // Receiving: Everyone can receive.
     giver = receiver;
     receiver = getTestUnit();
-    giver.exchangeTo(receiver, 0);
+      giver.exchangeTo(receiver, getSoulBook());
     assertTrue(giver.getItems().isEmpty());
     assertEquals(getSoulBook(), receiver.getItems().get(0));
   }

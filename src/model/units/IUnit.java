@@ -111,9 +111,9 @@ public interface IUnit {
 
   /**
    * @param unit  who receive the item
-   * @param index the index of the item in the unit's list  that we want to give
+   * @param item the index of the item in the unit's list  that we want to give
    */
-  void exchangeTo(IUnit unit, int index);
+  void exchangeTo(IUnit unit, IEquipableItem item);
 
   /**
    * @param unit the unit who is going to be healed by a Cleric with an Staff

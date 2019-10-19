@@ -23,12 +23,13 @@ public class TacticianTest {
     private Tactician playerTest;
     private List<IUnit> unitsTest;
     private Field field;
+    private boolean make = true;
 
     @BeforeEach
     void setUp() {
         playerTest = new Tactician("Player X");
         setField();
-        setUnitsTest();
+        if (make) setUnitsTest();
     }
 
     public void setField() {
@@ -41,6 +42,8 @@ public class TacticianTest {
 
     @Test
     void setUnitsTest() {
+        make = false;
+        setUp();
         IUnit unit_1 = new Cleric(50, 2, null, new Staff("StaffTest", 10, 1, 2));
         assertEquals(0, playerTest.getUnits().size());
         playerTest.addUnit(unit_1);
@@ -52,6 +55,7 @@ public class TacticianTest {
         assertEquals(unit_2, playerTest.getUnits().get(1));
         assertNotEquals(unit_1, playerTest.getUnits().get(1));
         unitsTest = playerTest.getUnits();
+        make = true;
     }
 
     @Test
