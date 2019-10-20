@@ -1,6 +1,8 @@
 package model;
 
-
+import model.Factory.Item.ItemFactory;
+import model.Factory.unit.UnitFactory;
+import model.items.IEquipableItem;
 import model.map.Location;
 import model.units.IUnit;
 
@@ -39,10 +41,20 @@ public class Tactician {
     public IUnit getUnitIn(int x, int y) {
         for (int i = 0; i < getUnits().size(); i++) {
             IUnit unit = getUnits().get(i);
-            if (unit.getLocation() == new Location(x, y)) {
+            if (unit.getLocation().equals(new Location(x, y))) {
                 return unit;
             }
         }
         return null;
     }
+
+    public IEquipableItem createItem(ItemFactory typeOfItem) {
+        return typeOfItem.createI();
+    }
+
+    public IUnit createUnit(UnitFactory typeOfUnit) {
+        return typeOfUnit.createUnit();
+    }
+
+
 }

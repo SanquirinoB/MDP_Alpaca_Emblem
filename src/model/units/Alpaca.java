@@ -31,8 +31,8 @@ public class Alpaca extends PassiveUnit {
    *
    *     By default, this unit isn't agressive
    */
-  Alpaca(int hitPoints, final int movement, Location location,
-         IEquipableItem... items) {
+  public Alpaca(int hitPoints, final int movement, Location location,
+                IEquipableItem... items) {
       super(hitPoints, movement, location, Integer.MAX_VALUE, items);
   }
 
