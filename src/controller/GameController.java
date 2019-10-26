@@ -35,7 +35,6 @@ public class GameController implements PropertyChangeListener {
     private List<String> winners;
     private IEquipableItem selectedItem;
     private Long seed;
-    private PropertyChangeListener pcl;
     /**
      * Creates the controller for a new game.
      *
@@ -98,7 +97,7 @@ public class GameController implements PropertyChangeListener {
         for (int i = 0; i < numberOfPlayers; i++) {
             Tactician player = new Tactician("Player " + i);
             player.giveMap(getGameMap());
-            player.addPropertyChangeListener(pcl);
+            player.addPropertyChangeListener(this);
             players.add(player);
         }
         return players;
@@ -222,8 +221,6 @@ public class GameController implements PropertyChangeListener {
             }
         }
     }
-
-
 
     /**
      * @return the winner of this game, if the match ends in a draw returns a list of all the winners
@@ -351,4 +348,17 @@ public class GameController implements PropertyChangeListener {
             this.getGameMap().getCell(l.getRow(), l.getColumn()).setUnit((IUnit) propertyChangeEvent.getOldValue());
         }
     }
+
+    public void showUnitsInMap() {
+        Field map = getGameMap();
+        int size = getSizeMap();
+        for (int i = 0; i < size; i++) {
+            for (int j = 0; j < size; j++) {
+                System.out.print("| " + map.getCell(i, j).getUnit().getClass() + " |");
+            }
+            System.out.println("");
+        }
+
+    }
+
 }

@@ -7,6 +7,8 @@ import model.map.Field;
 import model.map.Location;
 import model.units.IUnit;
 
+import javax.swing.plaf.basic.BasicListUI;
+import javax.swing.plaf.basic.BasicListUI.PropertyChangeHandler;
 import java.beans.PropertyChangeEvent;
 import java.beans.PropertyChangeListener;
 import java.beans.PropertyChangeSupport;
@@ -23,13 +25,13 @@ public class Tactician implements PropertyChangeListener {
     private boolean heroIsDead;
     private UnitFactory HeroFactory;
     private IUnit selectedUnit;
-    private PropertyChangeListener TControl;
 
     public Tactician(String name) {
         this.name = name;
         units = new ArrayList<>();
         support = new PropertyChangeSupport(this);
         heroIsDead = false;
+        initializer();
     }
 
     public String getName() {
@@ -41,7 +43,7 @@ public class Tactician implements PropertyChangeListener {
     }
 
     public void addUnit(IUnit unit) {
-        unit.addPropertyChangeListener(TControl);
+        unit.addPropertyChangeListener(this);
         units.add(unit);
     }
 
@@ -104,7 +106,22 @@ public class Tactician implements PropertyChangeListener {
     }
 
     @Override
-    public void propertyChange(PropertyChangeEvent propertyChangeEvent) {
+    public void propertyChange(PropertyChangeEvent PCE) {
+        String event = PCE.getPropertyName();
+        if (event.equals("newUnitInMap")) {
+            support.firePropertyChange(PCE.getPropertyName(), PCE.getOldValue(), PCE.getNewValue());
+        }
+    }
 
+    public void showUnits() {
+        List<IUnit> units = this.getUnits();
+        int n = units.size();
+        for (int i = 0; i < n; i++) {
+            System.out.println(units.get(i).getClass() + " | ");
+        }
+    }
+
+    public void setTestNullUnits() {
+        this.units = new ArrayList<>();
     }
 }

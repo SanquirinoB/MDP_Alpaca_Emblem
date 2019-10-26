@@ -3,6 +3,7 @@ package model.map;
 import java.util.HashSet;
 import java.util.Set;
 import model.units.IUnit;
+import model.units.Pointer;
 
 /**
  * This class represents a <i>location</i> in the game's map.
@@ -39,6 +40,11 @@ public class Location {
     this.row = row;
     this.column = column;
     id = "(" + row + ", " + column + ")";
+    setNeutralUnit();
+  }
+
+  private void setNeutralUnit() {
+    unit = new Pointer(this);
   }
 
   /**
@@ -108,7 +114,16 @@ public class Location {
    *     the unit to be placed in this cell
    */
   public void setUnit(final IUnit unit) {
-    this.unit = unit;
+    if (this.getUnit().getClass() == getPointer().getClass()) {
+      this.unit = unit;
+    } else {
+      System.out.println("Hay que arreglar eta ocurrencia");
+    }
+
+  }
+
+  private IUnit getPointer() {
+    return unit;
   }
 
   /**

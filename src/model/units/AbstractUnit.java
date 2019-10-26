@@ -37,7 +37,7 @@ public abstract class AbstractUnit implements IUnit {
   protected IEquipableItem equippedItem;
   private Location location;
   private int maxItems;
-    private PropertyChangeSupport support;
+  private PropertyChangeSupport support = new PropertyChangeSupport(this);
 
   /**
    * Creates a new Unit.
@@ -229,16 +229,17 @@ public abstract class AbstractUnit implements IUnit {
     this.setItems(items);
   }
 
-    @Override
-    public void addPropertyChangeListener(PropertyChangeListener tControl) {
-        support.addPropertyChangeListener(tControl);
+
+  @Override
+  public void setUnitIn(Location location) {
+    support.firePropertyChange("newUnitInMap", this, location);
+    this.setLocation(location);
     }
 
-    @Override
-    public void setUnitIn(Location location) {
-        support.firePropertyChange("newUnitInMap", this, location);
-        this.setLocation(location);
-    }
+  @Override
+  public void addPropertyChangeListener(PropertyChangeListener tControl) {
+    support.addPropertyChangeListener(tControl);
+  }
 
   /**
    * @param unit who receive the item

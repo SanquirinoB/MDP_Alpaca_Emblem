@@ -33,7 +33,7 @@ public class TacticianTest {
         controller.initEndlessGame();
         playerTest = controller.getTurnOwner();
         setField();
-        if (make) setUnitsTest();
+        setUnitsTest();
     }
 
     public void setField() {
@@ -46,8 +46,7 @@ public class TacticianTest {
 
     @Test
     void setUnitsTest() {
-        make = false;
-        setUp();
+        playerTest.setTestNullUnits();
         IUnit unit_1 = new Cleric(50, 2, null, new Staff("StaffTest", 10, 1, 2));
         assertEquals(0, playerTest.getUnits().size());
         playerTest.addUnit(unit_1);
@@ -59,13 +58,12 @@ public class TacticianTest {
         assertEquals(unit_2, playerTest.getUnits().get(1));
         assertNotEquals(unit_1, playerTest.getUnits().get(1));
         unitsTest = playerTest.getUnits();
-        make = true;
     }
 
     @Test
     void getNameTest() {
         String playerName = playerTest.getName();
-        assertEquals("Player X", playerName);
+        assertEquals("Player 1", playerName);
     }
 
     @Test
@@ -82,8 +80,10 @@ public class TacticianTest {
     void setUnitIn() {
         Hero hero1 = new Hero(50, 2, null);
         playerTest.addUnit(hero1);
-        playerTest.getUnits().get(0).setUnitIn(new Location(1, 1));
-        assertEquals(hero1, controller.getGameMap().getCell(1, 1).getUnit());
+        //playerTest.showUnits();
+        playerTest.getUnits().get(2).setUnitIn(new Location(0, 0));
+        //controller.showUnitsInMap();
+        assertEquals(hero1, controller.getGameMap().getCell(0, 0).getUnit());
     }
 
 

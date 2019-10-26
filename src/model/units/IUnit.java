@@ -142,7 +142,7 @@ public interface IUnit {
 
   void useItemOn(IUnit victim);
 
-  void addPropertyChangeListener(PropertyChangeListener tControl);
-
   void setUnitIn(Location location);
+
+    void addPropertyChangeListener(PropertyChangeListener tControl);
 }
