@@ -1,26 +1,29 @@
 package model;
 
 import model.Factory.Item.ItemFactory;
-import model.Factory.unit.HeroFactory;
 import model.Factory.unit.UnitFactory;
 import model.items.IEquipableItem;
+import model.map.Field;
 import model.map.Location;
-import model.units.Hero;
 import model.units.IUnit;
 
+import java.beans.PropertyChangeEvent;
 import java.beans.PropertyChangeListener;
 import java.beans.PropertyChangeSupport;
 import java.util.ArrayList;
 import java.util.List;
 
-public class Tactician {
+public class Tactician implements PropertyChangeListener {
 
     private final String name;
     private List<IUnit> units;
     private PropertyChangeSupport support;
     private int nUnits;
+    private Field map;
     private boolean heroIsDead;
     private UnitFactory HeroFactory;
+    private IUnit selectedUnit;
+    private PropertyChangeListener TControl;
 
     public Tactician(String name) {
         this.name = name;
@@ -38,6 +41,7 @@ public class Tactician {
     }
 
     public void addUnit(IUnit unit) {
+        unit.addPropertyChangeListener(TControl);
         units.add(unit);
     }
 
@@ -65,7 +69,7 @@ public class Tactician {
         return null;
     }
 
-    public void PCLNewsAgency() {
+    public void initializer() {
         support = new PropertyChangeSupport(this);
     }
 
@@ -95,5 +99,12 @@ public class Tactician {
         return typeOfUnit.createUnit();
     }
 
+    public void giveMap(Field gameMap) {
+        map = gameMap;
+    }
 
+    @Override
+    public void propertyChange(PropertyChangeEvent propertyChangeEvent) {
+
+    }
 }

@@ -7,19 +7,20 @@ import static org.junit.jupiter.api.Assertions.assertTrue;
 
 import java.util.List;
 import java.util.Random;
-import java.util.stream.IntStream;
 
+
+import controller.GameController;
 import model.items.Bow;
 import model.items.Staff;
 import model.map.Field;
 import model.map.Location;
-import model.units.Archer;
-import model.units.Cleric;
-import model.units.IUnit;
+import model.units.*;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
 public class TacticianTest {
+    private GameController controller;
+    private long randomSeed;
     private Tactician playerTest;
     private List<IUnit> unitsTest;
     private Field field;
@@ -27,7 +28,10 @@ public class TacticianTest {
 
     @BeforeEach
     void setUp() {
-        playerTest = new Tactician("Player X");
+        randomSeed = new Random().nextLong();
+        controller = new GameController(2, 7, randomSeed);
+        controller.initEndlessGame();
+        playerTest = controller.getTurnOwner();
         setField();
         if (make) setUnitsTest();
     }
@@ -72,6 +76,14 @@ public class TacticianTest {
         playerTest.getUnits().remove(i - 1);
         assertEquals(i - 1, playerTest.getUnits().size());
         assertNotEquals(unit, playerTest.getUnits().get(0));
+    }
+
+    @Test
+    void setUnitIn() {
+        Hero hero1 = new Hero(50, 2, null);
+        playerTest.addUnit(hero1);
+        playerTest.getUnits().get(0).setUnitIn(new Location(1, 1));
+        assertEquals(hero1, controller.getGameMap().getCell(1, 1).getUnit());
     }
 
 

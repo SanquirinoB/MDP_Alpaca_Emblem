@@ -34,24 +34,53 @@ public class GameController implements PropertyChangeListener {
     private IUnit currentUnit;
     private List<String> winners;
     private IEquipableItem selectedItem;
-    private Tactician nextPlayer;
-    private PropertyChangeListener control;
-    private boolean firstRoad;
-
+    private Long seed;
+    private PropertyChangeListener pcl;
     /**
      * Creates the controller for a new game.
      *
      * @param numberOfPlayers the number of players for this game
      * @param mapSize         the dimensions of the map, for simplicity, all maps are squares
      */
-    public GameController(int numberOfPlayers, int mapSize, Long seed) {
+    public GameController(int numberOfPlayers, int mapSize, Long s) {
         nPlayers = numberOfPlayers;
         sizeMap = mapSize;
         createMap(mapSize);
-        tacticians = createTacticians(numberOfPlayers);
-        createTurns(numberOfPlayers, seed);
+        currentTactician = null;
+        seed = s;
+    }
+
+    /**
+     * Starts the game.
+     *
+     * @param maxTurns the maximum number of turns the game can last
+     */
+    public void initGame(final int maxTurns) {
+        rounds = maxTurns;
+        initAll();
+    }
+
+    private void initAll() {
+        tacticians = createTacticians(getNPlayers());
+        winners = new ArrayList<>();
+        rounds_played = 1;
+        indexTurn = 0;
+        createTurns(getNPlayers(), getSeed());
         currentTactician = getTurnOwner();
         winners = new ArrayList<>();
+
+    }
+
+    /**
+     * Starts a game without a limit of turns.
+     */
+    public void initEndlessGame() {
+        rounds = -1;
+        initAll();
+    }
+
+    private Long getSeed() {
+        return seed;
     }
 
     private void createTurns(int n, Long seed) {
@@ -68,7 +97,8 @@ public class GameController implements PropertyChangeListener {
         List<Tactician> players = new ArrayList<>();
         for (int i = 0; i < numberOfPlayers; i++) {
             Tactician player = new Tactician("Player " + i);
-            player.addPropertyChangeListener(control);
+            player.giveMap(getGameMap());
+            player.addPropertyChangeListener(pcl);
             players.add(player);
         }
         return players;
@@ -108,22 +138,12 @@ public class GameController implements PropertyChangeListener {
     public Tactician getTurnOwner() {
         for (int i = 0; i < getNPlayers(); i++) {
             if (getTacticians().get(i).getName().equals("Player " + getTurns().get(getIndexTurn()))) {
-                nextPlayer = getTacticians().get((getTurns().get(getIndexTurn() + 1) % getNPlayers()));
                 return getTacticians().get(i);
             }
         }
         return null;
     }
 
-
-    /**
-     * This method is made only for testing.
-     *
-     * @return the next tactician in the game
-     */
-    public Tactician getNextPlayer() {
-        return nextPlayer;
-    }
 
     private int getIndexTurn() {
         return indexTurn;
@@ -148,11 +168,7 @@ public class GameController implements PropertyChangeListener {
      */
     public void endTurn() {
         if (getIndexTurn() == (getNPlayers() - 1)) {
-            if (getRoundNumber() == 1 && !firstRoad) {
-                rounds_played++;
-            } else {
-                firstRoad = false;
-            }
+            rounds_played++;
         }
         indexTurn = (indexTurn + 1) % getNPlayers();
         currentTactician = getTurnOwner();
@@ -183,7 +199,7 @@ public class GameController implements PropertyChangeListener {
 
     private void hasGameEnd() {
         boolean allPlayersOut = getNPlayers() == 1;
-        boolean maxRoundsReached = getRoundNumber() == getMaxRounds();
+        boolean maxRoundsReached = getRoundNumber() == getMaxRounds() + 1;
         if (allPlayersOut || maxRoundsReached) {
             selectWinners();
         }
@@ -202,33 +218,12 @@ public class GameController implements PropertyChangeListener {
                 getTacticians().remove(player);
                 getTurns().remove(i);
                 nPlayers--;
+                hasGameEnd();
             }
         }
     }
 
-    /**
-     * Starts the game.
-     *
-     * @param maxTurns the maximum number of turns the game can last
-     */
-    public void initGame(final int maxTurns) {
-        rounds = maxTurns;
-        rounds_played = 1;
-        indexTurn = 0;
-        winners = new ArrayList<>();
-        firstRoad = true;
-    }
 
-    /**
-     * Starts a game without a limit of turns.
-     */
-    public void initEndlessGame() {
-        rounds = -1;
-        rounds_played = 1;
-        indexTurn = 0;
-        winners = new ArrayList<>();
-        firstRoad = true;
-    }
 
     /**
      * @return the winner of this game, if the match ends in a draw returns a list of all the winners
@@ -256,6 +251,8 @@ public class GameController implements PropertyChangeListener {
             IUnit unit = player.getUnitIn(x, y);
             if (unit != null) {
                 currentUnit = unit;
+            } else {
+                currentUnit = null;
             }
         }
     }
@@ -343,10 +340,15 @@ public class GameController implements PropertyChangeListener {
 
     @Override
     public void propertyChange(PropertyChangeEvent propertyChangeEvent) {
-        Tactician loser = (Tactician) propertyChangeEvent.getNewValue();
-        this.getTacticians().remove(loser);
-        int num = loser.getName().charAt(loser.getName().length() - 1);
-        this.getTurns().remove(num);
-        hasGameEnd();
+        if (propertyChangeEvent.getPropertyName().equals("heroIsDead")) {
+            Tactician loser = (Tactician) propertyChangeEvent.getNewValue();
+            this.getTacticians().remove(loser);
+            int num = loser.getName().charAt(loser.getName().length() - 1);
+            this.getTurns().remove(num);
+            hasGameEnd();
+        } else if (propertyChangeEvent.getPropertyName().equals("newUnitInMap")) {
+            Location l = (Location) propertyChangeEvent.getNewValue();
+            this.getGameMap().getCell(l.getRow(), l.getColumn()).setUnit((IUnit) propertyChangeEvent.getOldValue());
+        }
     }
 }

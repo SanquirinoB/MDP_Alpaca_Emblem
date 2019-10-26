@@ -12,6 +12,9 @@ import java.util.stream.IntStream;
 
 import model.Tactician;
 import model.map.Field;
+import model.units.Hero;
+import model.units.IUnit;
+import model.units.Sorcerer;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
@@ -32,6 +35,7 @@ class GameControllerTest {
         randomSeed = new Random().nextLong();
         controller = new GameController(4, 7, randomSeed);
         testTacticians = List.of("Player 0", "Player 1", "Player 2", "Player 3");
+        controller.initEndlessGame();
     }
 
     @Test
@@ -86,8 +90,10 @@ class GameControllerTest {
 
     @Test
     void endTurn() {
-        Tactician firstPlayer = controller.getTurnOwner();
-        Tactician secondPlayer = controller.getNextPlayer();
+        int first = controller.getTurns().get(0);
+        int second = controller.getTurns().get(1);
+        Tactician firstPlayer = controller.getTacticians().get(first);
+        Tactician secondPlayer = controller.getTacticians().get(second);
         assertNotEquals(secondPlayer.getName(), firstPlayer.getName());
 
         controller.endTurn();
@@ -129,13 +135,12 @@ class GameControllerTest {
         IntStream.range(0, 2).forEach(i -> controller.endTurn());
         assertEquals(2, controller.getWinners().size());
         assertTrue(List.of("Player 1", "Player 3").containsAll(controller.getWinners()));
-
+        setUp();
         controller.initEndlessGame();
         for (int i = 0; i < 3; i++) {
-            assertNull(controller.getWinners());
+            assertEquals(new ArrayList<>(), controller.getWinners());
             controller.removeTactician("Player " + i);
         }
-        // EL PROBLEMA ES QUE HAY QUE IMPLEMENTAR OBSERVER EN CADA ACCIÓN QUE REQUIERA ANALIZAR LA OCURRENCIA DEL JUEGO
         assertEquals(1, controller.getWinners().size());
         assertTrue(List.of("Player 3").containsAll(controller.getWinners()));
     }
@@ -143,10 +148,28 @@ class GameControllerTest {
     // Desde aquí en adelante, los tests deben definirlos completamente ustedes
     @Test
     void getSelectedUnit() {
+        Tactician player = controller.getTurnOwner();
+        Hero heroP1 = new Hero(50, 2, controller.getGameMap().getCell(1, 1));
+        Sorcerer sorcererP1 = new Sorcerer(50, 2, controller.getGameMap().getCell(0, 1), 3);
+        player.addUnit(heroP1);
+        player.addUnit(sorcererP1);
+        controller.selectUnitIn(1, 1);
+        assertEquals(heroP1, controller.getSelectedUnit());
     }
 
     @Test
     void selectUnitIn() {
+        Tactician player = controller.getTurnOwner();
+        Hero heroP1 = new Hero(50, 2, controller.getGameMap().getCell(1, 1));
+        Sorcerer sorcererP1 = new Sorcerer(50, 2, controller.getGameMap().getCell(0, 1), 3);
+        player.addUnit(heroP1);
+        player.addUnit(sorcererP1);
+        controller.selectUnitIn(0, 1);
+        assertEquals(sorcererP1, controller.getSelectedUnit());
+        controller.selectUnitIn(0, 0);
+        assertNull(controller.getSelectedUnit());
+        controller.selectUnitIn(1, 1);
+        assertNotEquals(sorcererP1, controller.getSelectedUnit());
     }
 
     @Test

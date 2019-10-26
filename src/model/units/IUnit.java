@@ -1,5 +1,6 @@
 package model.units;
 
+import java.beans.PropertyChangeListener;
 import java.util.List;
 import model.items.IEquipableItem;
 import model.map.Location;
@@ -139,5 +140,9 @@ public interface IUnit {
    */
   void addItem(IEquipableItem item);
 
-    void useItemOn(IUnit victim);
+  void useItemOn(IUnit victim);
+
+  void addPropertyChangeListener(PropertyChangeListener tControl);
+
+  void setUnitIn(Location location);
 }

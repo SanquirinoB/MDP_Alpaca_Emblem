@@ -2,6 +2,8 @@ package model.units;
 
 import static java.lang.Math.min;
 
+import java.beans.PropertyChangeListener;
+import java.beans.PropertyChangeSupport;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collections;
@@ -35,6 +37,7 @@ public abstract class AbstractUnit implements IUnit {
   protected IEquipableItem equippedItem;
   private Location location;
   private int maxItems;
+    private PropertyChangeSupport support;
 
   /**
    * Creates a new Unit.
@@ -225,6 +228,17 @@ public abstract class AbstractUnit implements IUnit {
     items.add(item);
     this.setItems(items);
   }
+
+    @Override
+    public void addPropertyChangeListener(PropertyChangeListener tControl) {
+        support.addPropertyChangeListener(tControl);
+    }
+
+    @Override
+    public void setUnitIn(Location location) {
+        support.firePropertyChange("newUnitInMap", this, location);
+        this.setLocation(location);
+    }
 
   /**
    * @param unit who receive the item
