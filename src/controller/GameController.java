@@ -238,20 +238,13 @@ public class GameController implements PropertyChangeListener {
 
     /**
      * Selects a unit in the game map
-     *
-     * @param x horizontal position of the unit
+     *  @param x horizontal position of the unit
      * @param y vertical position of the unit
+     * @return
      */
     public void selectUnitIn(int x, int y) {
-        for (int i = 0; i < getNPlayers(); i++) {
-            Tactician player = getTacticians().get(i);
-            IUnit unit = player.getUnitIn(x, y);
-            if (unit != null) {
-                currentUnit = unit;
-            } else {
-                currentUnit = null;
-            }
-        }
+        Field map = getGameMap();
+        currentUnit =  map.getCell(x,y).getUnit();
     }
 
     public IUnit getUnitIn(int x, int y) {

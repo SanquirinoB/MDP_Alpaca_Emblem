@@ -63,7 +63,7 @@ public class TacticianTest {
     @Test
     void getNameTest() {
         String playerName = playerTest.getName();
-        assertEquals("Player 1", playerName);
+        assertEquals(controller.getTurnOwner().getName(), playerName);
     }
 
     @Test

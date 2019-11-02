@@ -147,23 +147,24 @@ class GameControllerTest {
 
     // Desde aquí en adelante, los tests deben definirlos completamente ustedes
     @Test
-    void getSelectedUnit() {
+    void setUnitIn(){
         Tactician player = controller.getTurnOwner();
-        Hero heroP1 = new Hero(50, 2, controller.getGameMap().getCell(1, 1));
-        Sorcerer sorcererP1 = new Sorcerer(50, 2, controller.getGameMap().getCell(0, 1), 3);
+        Hero heroP1 = new Hero(50, 2, null);
         player.addUnit(heroP1);
-        player.addUnit(sorcererP1);
-        controller.selectUnitIn(1, 1);
-        assertEquals(heroP1, controller.getSelectedUnit());
+        player.getUnits().get(0).setUnitIn(controller.getGameMap().getCell(1, 1));
+        assertEquals(controller.getGameMap().getCell(1, 1), player.getUnits().get(0).getLocation());
+        assertEquals(player.getUnits().get(0), controller.getGameMap().getCell(1,1).getUnit());
     }
 
     @Test
     void selectUnitIn() {
         Tactician player = controller.getTurnOwner();
-        Hero heroP1 = new Hero(50, 2, controller.getGameMap().getCell(1, 1));
-        Sorcerer sorcererP1 = new Sorcerer(50, 2, controller.getGameMap().getCell(0, 1), 3);
+        Hero heroP1 = new Hero(50, 2, null);
+        Sorcerer sorcererP1 = new Sorcerer(50, 2, null, 3);
         player.addUnit(heroP1);
+        player.getUnits().get(0).setUnitIn(controller.getGameMap().getCell(1,1));
         player.addUnit(sorcererP1);
+        player.getUnits().get(1).setUnitIn(controller.getGameMap().getCell(0,1));
         controller.selectUnitIn(0, 1);
         assertEquals(sorcererP1, controller.getSelectedUnit());
         controller.selectUnitIn(0, 0);
@@ -171,6 +172,20 @@ class GameControllerTest {
         controller.selectUnitIn(1, 1);
         assertNotEquals(sorcererP1, controller.getSelectedUnit());
     }
+
+    @Test
+    void getSelectedUnit() {
+        Tactician player = controller.getTurnOwner();
+        Hero heroP1 = new Hero(50, 2, null);
+        Sorcerer sorcererP1 = new Sorcerer(50, 2, null, 3);
+        player.addUnit(heroP1);
+        player.getUnits().get(0).setUnitIn(controller.getGameMap().getCell(1, 1));
+        player.addUnit(sorcererP1);
+        player.getUnits().get(1).setUnitIn(controller.getGameMap().getCell(0, 1));
+        controller.selectUnitIn(1, 1);
+        assertEquals(heroP1, controller.getSelectedUnit());
+    }
+
 
     @Test
     void getItems() {
