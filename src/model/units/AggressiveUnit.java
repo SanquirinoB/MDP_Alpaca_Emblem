@@ -3,7 +3,7 @@ package model.units;
 import model.items.IEquipableItem;
 import model.map.Location;
 
-public class AgressiveUnit extends AbstractUnit {
+public class AggressiveUnit extends AbstractUnit {
     /**
      * Creates a new Unit.
      *
@@ -13,7 +13,7 @@ public class AgressiveUnit extends AbstractUnit {
      * @param maxItems  maximum amount of items this unit can carry
      * @param items
      */
-    protected AgressiveUnit(int hitPoints, int movement, Location location, int maxItems, IEquipableItem... items) {
+    protected AggressiveUnit(int hitPoints, int movement, Location location, int maxItems, IEquipableItem... items) {
         super(hitPoints, movement, location, maxItems, items);
     }
 

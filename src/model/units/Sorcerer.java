@@ -11,7 +11,7 @@ import model.map.Location;
  * @since 2.0
  */
 
-public class Sorcerer extends AgressiveUnit {
+public class Sorcerer extends AggressiveUnit {
     /**
      * Creates a new Unit.
      *

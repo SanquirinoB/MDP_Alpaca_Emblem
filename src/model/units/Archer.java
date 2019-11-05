@@ -16,7 +16,7 @@ import model.map.Location;
  * @author Fernanda Sanchirico
  * @since 2.0
  */
-public class Archer extends AgressiveUnit {
+public class Archer extends AggressiveUnit {
 
   /**
    * Creates a new archer

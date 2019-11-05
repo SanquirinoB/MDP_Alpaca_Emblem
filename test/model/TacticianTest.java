@@ -10,7 +10,12 @@ import java.util.Random;
 
 
 import controller.GameController;
+import model.Factory.Item.AxeFactory;
+import model.Factory.Item.ItemFactory;
+import model.Factory.unit.AlpacaFactory;
+import model.items.Axe;
 import model.items.Bow;
+import model.items.IEquipableItem;
 import model.items.Staff;
 import model.map.Field;
 import model.map.Location;
@@ -85,6 +90,21 @@ public class TacticianTest {
         //controller.showUnitsInMap();
         assertEquals(hero1, controller.getGameMap().getCell(0, 0).getUnit());
     }
+
+    @Test
+    void createItem(){
+        IEquipableItem axe = new Axe("a", 10, 1, 2);
+        IEquipableItem desiredAxe = playerTest.createItem(new AxeFactory());
+        assertEquals(axe.getClass(), desiredAxe.getClass());
+    }
+
+    @Test
+    void createUnit(){
+        IUnit alpaca = new Alpaca(50, 1, null);
+        IUnit desiredAlpaca = playerTest.createUnit(new AlpacaFactory());
+        assertEquals(alpaca.getClass(), desiredAlpaca.getClass());
+    }
+
 
 
 }

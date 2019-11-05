@@ -18,9 +18,7 @@ public class PassiveUnit extends AbstractUnit {
     }
 
     @Override
-    public void equipItem(IEquipableItem item) {
-
-    }
+    public void equipItem(IEquipableItem item) {}
 
     @Override
     public boolean attackViable(IUnit enemy) {
@@ -28,8 +26,7 @@ public class PassiveUnit extends AbstractUnit {
     }
 
     @Override
-    public void attack(IUnit enemy) {
-    }
+    public void attack(IUnit enemy) {}
 
     @Override
     public void attackBack(AbstractUnit abstractUnit) {

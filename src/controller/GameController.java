@@ -301,6 +301,10 @@ public class GameController implements PropertyChangeListener {
         selectedItem = currentUnit.getItems().get(index);
     }
 
+    public IEquipableItem getSelectedItem(){
+        return selectedItem;
+    }
+
     /**
      * Gives the selected item to a target unit.
      *

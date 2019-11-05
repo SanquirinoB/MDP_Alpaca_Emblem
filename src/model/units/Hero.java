@@ -16,7 +16,7 @@ import model.map.Location;
  * @author Fernanda Sanchirico
  * @since 2.0
  */
-public class Hero extends AgressiveUnit {
+public class Hero extends AggressiveUnit {
 
   /**
    * Creates a new Unit.

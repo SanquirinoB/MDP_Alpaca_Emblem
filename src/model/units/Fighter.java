@@ -15,7 +15,7 @@ import model.map.Location;
  * @author Fernanda Sanchirico
  * @since 2.0
  */
-public class Fighter extends AgressiveUnit {
+public class Fighter extends AggressiveUnit {
 
   public Fighter( int hitPoints,  int movement,  Location location,
       IEquipableItem... items) {
