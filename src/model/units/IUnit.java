@@ -13,6 +13,11 @@ import model.map.Location;
  *
  * @author Ignacio Slater Muñoz
  * @since 1.0
+ *
+ * ACTUALIZED
+ * @author Fernanda Sanchirico
+ * @version 2.1
+ * @since 2.0
  */
 public interface IUnit {
 
@@ -140,9 +145,30 @@ public interface IUnit {
    */
   void addItem(IEquipableItem item);
 
+  /**
+   * It is an abstraction for the use of items, we use DD for determinate
+   * which actions must be realized
+   *
+   * @param victim The unit who is going to be attacked or healed
+   */
   void useItemOn(IUnit victim);
 
+  /**
+   * When the location is seated by the Tactician we use this method and notice to the controller
+   * that is a new unit in the map
+   *
+   * @param location
+   */
   void setUnitIn(Location location);
 
+  /**
+   * It allow us to connect the units with their Tacticians
+   * @param tControl
+   */
   void addPropertyChangeListener(PropertyChangeListener tControl);
+
+  /**
+   * It communicate to the Tactician that the unit is selected by the controller
+   */
+  void imSelected();
 }

@@ -19,6 +19,12 @@ import model.units.IUnit;
  * @author Ignacio Slater Muñoz
  * @version 2.0
  * @since 2.0
+ *
+ * NEW VERSION:
+ * THE BEST CONTROLLER
+ * @author Fernanda Sanchirico
+ * @version 2.1
+ * @since 2.0
  */
 public class GameController implements PropertyChangeListener {
 
@@ -54,20 +60,9 @@ public class GameController implements PropertyChangeListener {
      *
      * @param maxTurns the maximum number of turns the game can last
      */
-    public void initGame(final int maxTurns) {
+    public void initGame(int maxTurns) {
         rounds = maxTurns;
         initAll();
-    }
-
-    private void initAll() {
-        tacticians = createTacticians(getNPlayers());
-        winners = new ArrayList<>();
-        rounds_played = 1;
-        indexTurn = 0;
-        createTurns(getNPlayers(), getSeed());
-        currentTactician = getTurnOwner();
-        winners = new ArrayList<>();
-
     }
 
     /**
@@ -78,10 +73,33 @@ public class GameController implements PropertyChangeListener {
         initAll();
     }
 
+    /**
+     * Set the common variables of the game
+     */
+    private void initAll() {
+        tacticians = createTacticians(getNPlayers());
+        winners = new ArrayList<>();
+        rounds_played = 1;
+        indexTurn = 0;
+        createTurns(getNPlayers(), getSeed());
+        currentTactician = getTurnOwner();
+        winners = new ArrayList<>();
+    }
+
+
+    /**
+     * Get the seed
+     * @return seed
+     */
     private Long getSeed() {
         return seed;
     }
 
+    /**
+     * In a randomly way we set the turns of the players
+     * @param n number of players
+     * @param seed seed :D
+     */
     private void createTurns(int n, Long seed) {
         Random seedBkn = new Random(seed);
         turns = new ArrayList<>();
@@ -92,6 +110,12 @@ public class GameController implements PropertyChangeListener {
         }
     }
 
+
+    /**
+     * It creates all the Tacticians
+     * @param numberOfPlayers
+     * @return List of Tactician
+     */
     private List<Tactician> createTacticians(int numberOfPlayers) {
         List<Tactician> players = new ArrayList<>();
         for (int i = 0; i < numberOfPlayers; i++) {
@@ -103,6 +127,11 @@ public class GameController implements PropertyChangeListener {
         return players;
     }
 
+    /**
+     * We create the map of the game, it's an square
+     * FUTURE VERSION: The map will be with an random shape
+     * @param mapSize
+     */
     private void createMap(int mapSize) {
         field = new Field();
         int m = 0;
@@ -144,6 +173,9 @@ public class GameController implements PropertyChangeListener {
     }
 
 
+    /**
+     * @return get the index of the current turn
+     */
     private int getIndexTurn() {
         return indexTurn;
     }
@@ -174,6 +206,9 @@ public class GameController implements PropertyChangeListener {
         hasGameEnd();
     }
 
+    /**
+     * Analyzing the state of the game, it determinate the list of winners
+     */
     private void selectWinners() {
         winners = new ArrayList<>();
         if (getTacticians().size() == 1) {
@@ -183,6 +218,9 @@ public class GameController implements PropertyChangeListener {
         }
     }
 
+    /**
+     * @return Sorted list of winner based on the number of unit alive
+     */
     private List<String> searchTheTop() {
         int max = -1;
         List<String> winners = new ArrayList<>();
@@ -196,6 +234,9 @@ public class GameController implements PropertyChangeListener {
         return winners;
     }
 
+    /**
+     * Analise if the game has ended or not
+     */
     private void hasGameEnd() {
         boolean allPlayersOut = getNPlayers() == 1;
         boolean maxRoundsReached = getRoundNumber() == getMaxRounds() + 1;
@@ -240,13 +281,20 @@ public class GameController implements PropertyChangeListener {
      * Selects a unit in the game map
      *  @param x horizontal position of the unit
      * @param y vertical position of the unit
-     * @return
      */
     public void selectUnitIn(int x, int y) {
         Field map = getGameMap();
         currentUnit =  map.getCell(x,y).getUnit();
+        if(currentUnit != null){
+            currentUnit.imSelected();
+        }
     }
 
+    /**
+     * @param x horizontal position of the unit
+     * @param y vertical position of the unit
+     * @return the unit in that Location
+     */
     public IUnit getUnitIn(int x, int y) {
         for (int i = 0; i < getNPlayers(); i++) {
             Tactician player = getTacticians().get(i);
@@ -265,6 +313,9 @@ public class GameController implements PropertyChangeListener {
         return getCurrentUnit().getItems();
     }
 
+    /**
+     * @return get the current unit
+     */
     private IUnit getCurrentUnit() {
         return currentUnit;
     }
@@ -301,6 +352,9 @@ public class GameController implements PropertyChangeListener {
         selectedItem = currentUnit.getItems().get(index);
     }
 
+    /**
+     * @return get the selected item
+     */
     public IEquipableItem getSelectedItem(){
         return selectedItem;
     }
@@ -316,22 +370,38 @@ public class GameController implements PropertyChangeListener {
         if (receiver != null) currentUnit.exchangeTo(getUnitIn(x, y), selectedItem);
     }
 
+    /**
+     * @return get the number of players
+     */
     public int getNPlayers() {
         return nPlayers;
     }
 
+    /**
+     * @return the list of turns with the number of the Tacticians
+     */
     public List<Integer> getTurns() {
         return turns;
     }
 
+    /**
+     * @return the size of the map
+     */
     public int getSizeMap() {
         return sizeMap;
     }
 
+    /**
+     * @return get the current Tactician
+     */
     public Tactician getCurrentTactician() {
         return currentTactician;
     }
 
+    /**
+     * It analyze the signals observed by the controller
+     * @param propertyChangeEvent
+     */
     @Override
     public void propertyChange(PropertyChangeEvent propertyChangeEvent) {
         if (propertyChangeEvent.getPropertyName().equals("heroIsDead")) {
@@ -340,12 +410,20 @@ public class GameController implements PropertyChangeListener {
             int num = loser.getName().charAt(loser.getName().length() - 1);
             this.getTurns().remove(num);
             hasGameEnd();
-        } else if (propertyChangeEvent.getPropertyName().equals("newUnitInMap")) {
+        }
+        else if (propertyChangeEvent.getPropertyName().equals("newUnitInMap")) {
             Location l = (Location) propertyChangeEvent.getNewValue();
             this.getGameMap().getCell(l.getRow(), l.getColumn()).setUnit((IUnit) propertyChangeEvent.getOldValue());
         }
+        else if (propertyChangeEvent.getPropertyName().equals("quitUnit")){
+            Location l = (Location) propertyChangeEvent.getNewValue();
+            this.getGameMap().getCell(l.getRow(), l.getColumn()).setUnit(null);
+        }
     }
 
+    /**
+     * Developed only for visual testing
+     */
     public void showUnitsInMap() {
         Field map = getGameMap();
         int size = getSizeMap();

@@ -142,11 +142,18 @@ public class Field {
     return cell1.isNeighbour(cell2);
   }
 
+  /**
+   * @return the size of the map
+   */
   public int getSize() {
     return size;
   }
 
-    public void setSize(int s) {
+  /**
+   * Set the size of the map
+   * @param s map size
+   */
+  public void setSize(int s) {
         size = s;
     }
 }

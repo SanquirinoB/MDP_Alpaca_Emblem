@@ -178,7 +178,10 @@ public abstract class AbstractUnit implements IUnit {
       damage = equippedItem.getPower();
     }
     int health = this.getCurrentHitPoints();
-      this.setCurrentHitPoints(Math.max(0, health - damage));
+    if(Math.max(0, health - damage) == 0){
+      support.firePropertyChange("unitDied", this, null);
+    }
+    this.setCurrentHitPoints(Math.max(0, health - damage));
   }
 
   /**
@@ -229,7 +232,11 @@ public abstract class AbstractUnit implements IUnit {
     this.setItems(items);
   }
 
-
+  /**
+   * When the location is seated by the Tactician we use this method and notice to the controller
+   * that is a new unit in the map
+   * @param location
+   */
   @Override
   public void setUnitIn(Location location) {
     support.firePropertyChange("newUnitInMap", this, location);
@@ -239,6 +246,14 @@ public abstract class AbstractUnit implements IUnit {
   @Override
   public void addPropertyChangeListener(PropertyChangeListener tControl) {
     support.addPropertyChangeListener(tControl);
+  }
+
+  /**
+   * It communicate to the Tactician that the unit is selected by the controller
+   */
+  @Override
+  public void imSelected() {
+    support.firePropertyChange("selected", null, this);
   }
 
   /**
