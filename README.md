@@ -14,7 +14,7 @@ El proyecto se desarrolla sobre la plataforma IntelliJ IDEA Ultimate, por lo que
 
 Dado que el proyecto se encuentra en un estado de construcción logística, solo es posible visualizar su ejecución por medio de los test.
 
-Hasta el penúltimo commit realizado el 10 de Septiembre 2019, estos test tienen un 97% de cobertura, tanto en los métodos de los distintos packages como líneas de código posee, de tal forma los test vislumbran con un amplio rango el comportamiento del proyecto.
+Hasta el penúltimo commit realizado el 7 de Octubre 2019, estos test tienen un 95% de cobertura, tanto en los métodos de los distintos packages como líneas de código posee, de tal forma los test vislumbran con un amplio rango el comportamiento del proyecto.
 
 ## Javadoc
 
@@ -26,7 +26,11 @@ De igual forma, todas las distintas clases y sus constructores se encuentran doc
 
 ### Patrón de Diseño
 
-En virtud de que este proyecto se haya guiado por el curso Metodologías de Diseño y Programación (CC3002-1), hasta el minuto no se ha tocado lo que se trata de patrones de diseño, por lo cual el código que pueden ver no se haya caracterizado formalmente.
+Se utilizan los siguientes patrones de diseño:
+
+1. Observer: Como el controlador debe estar al tanto de los jugadores, como los jugadores de sus unidades, se implementa una interfaz predeterminada para la relación Observador-Observado, ya que se requieren tomar decisiones en virtud de cambios externos en las distintas clases.
+2. Factory: El jugador solo solicita obtener un item o una unidad declarando solo el tipo de la fábrica, no interactuando directamente con el paquete de Unidades.
+3. Proxy: El controlador y los jugadores son el intermediario entre el cliente real y la implementación real del juego. Donde estos desempeñan la logística.
 
 ### Prácticas utilizadas
 
@@ -51,3 +55,15 @@ Por ejemplo, necesitamos diferenciar el hecho de que una unidad ataque con un ha
 6. **Sorcerer**: Item equipable libros de mágia (DarkBook/LightBook/SoulBook), puede atacar, contra atacar y ser sanado, **no tiene límite de items a cargar**.
 
 7. **SwordMaster**: Item equipable espada (Sword), puede atacar, contra atacar y ser sanado.
+
+### Tactician (ETAPA II)
+
+El Tactician es la implementación destinada a representar a un jugador, el cual posee una cantidad de unidades para combate, se caracterizan por nombres bajo enumeración (i.e. Player 1)
+
+### Controller (ETAPA II)
+
+Es lo más cercano que tenemos hasta ahora de la logística del juego, más para representar la dinamica del mismo solo es viable vía test.
+
+### Factories (ETAPA II)
+
+Creamos tanto items como unidades con valores, hasta el minuto, estandar. De esta forma los jugadores solo solicitan al objeto, no declaran sus propiedades.
