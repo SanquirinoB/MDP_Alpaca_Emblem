@@ -29,7 +29,7 @@ import model.map.Location;
  * @since 2.0
  */
 
-public abstract class AbstractUnit implements IUnit {
+public abstract class AbstractUnit {
 
   protected List<IEquipableItem> items = new ArrayList<>();
   private int currentHitPoints;
